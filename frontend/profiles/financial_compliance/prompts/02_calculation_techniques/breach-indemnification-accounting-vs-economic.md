@@ -1,0 +1,12 @@
+- **ACTIVE TECHNIQUE — Investment Breach Indemnification (Accounting vs. Economic Method)**:
+  - **Accounting Method (Separate Price Losses from Transaction Costs)**:
+    - Compute pure price losses and direct transaction costs on separate lines so fees are never double-counted:
+      - `Realized loss = sold_units * (purchase_price - sale_price)`
+      - `Unrealized loss = held_units * (purchase_price - valuation_price)`
+      - `Direct transaction costs = acquisition_fee + disposal_fee`
+      - `Total accounting indemnification = realized_loss + unrealized_loss + direct_transaction_costs`
+  - **Economic / Opportunity Cost Method (Benchmark Comparison)**:
+    - Compare the fund's actual net outcome against the hypothetical outcome if the initial outlay had tracked the benchmark return:
+      - `Benchmark theoretical outcome = initial_cost * (1 + benchmark_return)`
+      - `Actual net fund outcome = gross_proceeds - (acquisition_fee + disposal_fee)`
+      - `Economic variance vs benchmark = (Actual net fund outcome) - (Benchmark theoretical outcome)` *(a positive variance indicates net outperformance over the benchmark, resulting in zero economic loss).*

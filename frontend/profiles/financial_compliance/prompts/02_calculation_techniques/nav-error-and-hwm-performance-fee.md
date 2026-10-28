@@ -1,0 +1,12 @@
+- **ACTIVE TECHNIQUE — NAV Pricing Error Variance & High-Water Mark (HWM) Performance Fee**:
+  - **NAV Pricing Error Variance**:
+    - Compute the replicated NAV and pricing error metrics on separate lines in `calculate_decimal`:
+      - `Replicated NAV per share = replicated_net_assets / shares_outstanding`
+      - `Absolute variance per share = abs(reported_nav - replicated_nav)`
+      - `Relative variance (bps) = (abs(reported_nav - replicated_nav) / base_nav) * 10000`
+  - **High-Water Mark (HWM) Performance Fee**:
+    - Compute performance fee accrual only on positive outperformance above the High-Water Mark:
+      - `Outperformance per share = gross_nav_per_share - hwm_per_share`
+      - `Performance fee per share = (gross_nav_per_share - hwm_per_share) * perf_fee_rate`
+      - `Total performance fee accrual = performance_fee_per_share * shares_outstanding`
+      - `Final Net NAV per share = gross_nav_per_share - performance_fee_per_share`

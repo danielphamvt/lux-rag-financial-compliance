@@ -1,0 +1,3392 @@
+{
+  "metadata": {
+    "benchmark_name": "Second-Level NAV Compliance & Audit RAG Benchmark",
+    "version": "4.0.0",
+    "total_queries": 100,
+    "description": "100 High-Precision Retrieval Queries across 12 Taxonomy Groups (40 Baseline Q01-Q40 + 60 Stress-Test Q41-Q100), 8 End-to-End Neuro-Symbolic NAV Audit Scenarios (10 Runs), 6-Mode Retrieval Ablation Study, and 12 Symbolic Decimal vs. IEEE-754 Float64 Arithmetic Precision Cases"
+  },
+  "retrieval_queries": [
+    {
+      "id": "Q01",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2024-06-15",
+      "query": "What is the NAV error tolerance threshold for money market UCIs/cash funds, and what are the EUR indemnification thresholds below which no full corrective action plan is required?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        3,
+        5
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "0.25%",
+        "EUR 25,000",
+        "EUR 2,500"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q01_01",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "money market UCIs/cash funds",
+          "target_value": "0.25%",
+          "max_char_window": 180
+        },
+        {
+          "assertion_id": "ECA_Q01_02",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "EUR 25,000",
+          "target_value": "EUR 2,500",
+          "max_char_window": 250
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q02",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Under the circular in force from 1 January 2025, what is the tolerance threshold for Money Market Funds (MMFs) in Table 1 and the EUR compensation thresholds for a separate/special report in Table 9?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        16,
+        42
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.20%",
+        "EUR 50,000",
+        "EUR 5,000"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q02_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Money market fund",
+          "target_value": "0.20%",
+          "max_char_window": 260
+        },
+        {
+          "assertion_id": "ECA_Q02_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 9",
+          "target_value": "EUR 50,000",
+          "max_char_window": 450
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q03",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-01-10",
+      "query": "Which circular applies to NAV errors detected between 29 March 2024 and 1 January 2025 according to the transitional provisions in Chapter 10?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        46
+      ],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [
+        "1 January 2025",
+        "Circular CSSF 02/77"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q04",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2024-06-15",
+      "query": "What is the exact tolerance threshold in % of NAV for bond UCIs and mixed UCIs?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "0.50%"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q04_01",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "bond UCIs",
+          "target_value": "0.50%",
+          "max_char_window": 120
+        },
+        {
+          "assertion_id": "ECA_Q04_02",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "mixed UCIs",
+          "target_value": "0.50%",
+          "max_char_window": 120
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q05",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2024-06-15",
+      "query": "What is the exact tolerance threshold in % of NAV for shares and other financial assets' UCIs (equity funds)?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "1.00%"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q05_01",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "shares and other financial assets",
+          "target_value": "1.00%",
+          "max_char_window": 150
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q06",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Under CSSF 24/856 point 35(d)(iii), what is the absolute maximum cap that a customized tolerance threshold for well-informed/professional investor UCIs (SIFs/SICARs/UCI Part II) must never exceed?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        18
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "5%",
+        "5% of the NAV"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q06_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "well-informed",
+          "target_value": "5% of the NAV",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q07",
+      "group": "Group 3: Multi-Hop & Cross-Reference",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2024-08-20",
+      "query": "Under UCITS Directive Article 22, what are the depositary's oversight obligations regarding the calculation of the value of units, and does delegating safe-keeping to a third party affect the depositary's liability?",
+      "expected_source": "UCITS_2009_65_EC",
+      "expected_sources": [
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        23
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "Article 22",
+        "applicable national law and the fund rules",
+        "liability",
+        "not be affected"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q08",
+      "group": "Group 3: Multi-Hop & Cross-Reference",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Can the NAV error tolerance thresholds in Chapter 4 of CSSF 24/856 be applied to losses resulting from non-compliance with investment rules in Chapter 5?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        26
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "cannot be applied",
+        "Section 5.5"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q09",
+      "group": "Group 4: Prospectus Table & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Lux Alpha SICAV, what is the annual management fee rate for Class I versus Class R, and what tiered fee reduction applies under Footnote (*1)?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.40%",
+        "1.20%",
+        "0.30%",
+        "EUR 50,000,000"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q09_01",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "Class I",
+          "target_value": "0.40%",
+          "max_char_window": 220
+        },
+        {
+          "assertion_id": "ECA_Q09_02",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "Class R",
+          "target_value": "1.20%",
+          "max_char_window": 220
+        },
+        {
+          "assertion_id": "ECA_Q09_03",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "(*1)",
+          "target_value": "0.30%",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q10",
+      "group": "Group 4: Prospectus Table & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "What day-count convention is mandated by Section 9.2 of the Lux Alpha SICAV prospectus for management fee accruals, and what happens if Actual/360 is used?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        4
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Actual/365",
+        "breach",
+        "365 / 360"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q11",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2023-05-10",
+      "query": "Which earlier CSSF circular and exact publication date did Circular CSSF 02/77 replace and supersede upon its entry into force?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        2
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "CSSF circular 2000/8",
+        "15th March, 2000"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q12",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2024-07-12",
+      "query": "Under the circular in force in July 2024, how must unprocessed simultaneous or successive calculation errors that individually remain below the acceptable tolerance threshold be treated?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        4
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "simultaneous or successive calculation errors",
+        "aggregate basis"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q13",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2024-11-20",
+      "query": "In November 2024 under Section I.3(d), when is the external auditor's control of NAV error corrections performed as part of the annual audit of the UCI rather than a special report?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        9
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "annual audit of the UCI",
+        "EUR 25,000",
+        "EUR 2,500"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q14",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-01-15",
+      "query": "Under Points 162 and 163 of Chapter 10 in Circular CSSF 24/856, what is the exact entry into force date and which circular applies to errors detected between 29 March 2024 and 1 January 2025?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        46
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "1 January 2025",
+        "29 March 2024",
+        "Circular CSSF 02/77"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q15",
+      "group": "Group 1: Temporal Anti-Leakage",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-01-20",
+      "query": "Under Point 165 of Chapter 10 in Circular CSSF 24/856, how does the REA annual review under Circular CSSF 21/790 transition between financial year-ends up to 31 December 2024 inclusive and year-ends from 1 January 2025?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        46
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Circular CSSF 21/790",
+        "31 December 2024",
+        "1 January 2025"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q16",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-05",
+      "query": "Under Point 28 in Section 4.1 of Circular CSSF 24/856, what asset valuation methodologies are prescribed for SIFs and SICARs under the SIF/SICAR Laws versus Money Market Funds (MMFs) under Article 29 of the MMFR?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        15
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "fair value",
+        "amortised cost",
+        "mark-to-model"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q17",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-12",
+      "query": "Under Point 37(v) of Circular CSSF 24/856, if a foreign country where UCI units are marketed requires a more restrictive tolerance threshold, how must that threshold be applied across investors?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        19
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "more restrictive tolerance threshold",
+        "all investors"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q18",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-18",
+      "query": "Under Point 127 of Circular CSSF 24/856, does the de minimis rule apply to compensation amounts to be paid out to the UCI itself, and what is the only monetary unit exception?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        38
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "de minimis",
+        "one monetary unit"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q19",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-22",
+      "query": "Under Point 138 in Section 8.1 of Circular CSSF 24/856, what two conditions trigger an additional control and special report by the REA, and how is the EUR 50,000 total compensation amount calculated?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        39
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "EUR 50,000",
+        "EUR 5,000",
+        "both the compensation paid out to the UCI"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q20",
+      "group": "Group 2: Numerical Sensitivity",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-25",
+      "query": "Under Points 157 and 158 in Chapter 9 of Circular CSSF 24/856, what is the maximum deadline in months for submitting the REA special report, and what is the notification deadline in weeks after detecting an error?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        44,
+        45
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "4 to 8 weeks",
+        "3 months"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q21",
+      "group": "Group 3: Multi-Hop & Cross-Reference",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-15",
+      "query": "Under Section 5.5.3 (Points 78 to 85) of Circular CSSF 24/856, what are the three accounting cost methods (LIFO, FIFO, weighted average cost) under the Accounting method, and how does the Economic method differ?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        28,
+        29
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "LIFO",
+        "FIFO",
+        "weighted average cost",
+        "Economic method"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q22",
+      "group": "Group 3: Multi-Hop & Cross-Reference",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-16",
+      "query": "Under Article 52(1) and 52(2) of UCITS Directive 2009/65/EC, what are the quantitative percentage limits of the 5/10/40 issuer concentration rule for transferable securities and money market instruments?",
+      "expected_source": "UCITS_2009_65_EC",
+      "expected_sources": [
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        32
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Article 52",
+        "5 %",
+        "10 %",
+        "40 %"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q22_01",
+          "doc_id": "UCITS_2009_65_EC",
+          "anchor_entity": "Article 52",
+          "target_value": "10 %",
+          "max_char_window": 600
+        },
+        {
+          "assertion_id": "ECA_Q22_02",
+          "doc_id": "UCITS_2009_65_EC",
+          "anchor_entity": "5 %",
+          "target_value": "40 %",
+          "max_char_window": 250
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q23",
+      "group": "Group 3: Multi-Hop & Cross-Reference",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-17",
+      "query": "Under Article 83 of UCITS Directive 2009/65/EC, what is the general rule on borrowing by a UCITS, the back-to-back foreign currency loan exception, and the 10 % temporary and 15 % total borrowing limits?",
+      "expected_source": "UCITS_2009_65_EC",
+      "expected_sources": [
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        41
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Article 83",
+        "back-to-back",
+        "10 %",
+        "15 %"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q23_01",
+          "doc_id": "UCITS_2009_65_EC",
+          "anchor_entity": "Article 83",
+          "target_value": "back-to-back",
+          "max_char_window": 650
+        },
+        {
+          "assertion_id": "ECA_Q23_02",
+          "doc_id": "UCITS_2009_65_EC",
+          "anchor_entity": "10 %",
+          "target_value": "15 %",
+          "max_char_window": 450
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q24",
+      "group": "Group 3: Multi-Hop & Cross-Reference",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-02-19",
+      "query": "Under Article 31 of UCITS Directive 2009/65/EC, what transaction reconstruction controls must an investment company maintain, and what minimum NAV publication frequency is mandated by Article 76?",
+      "expected_source": "UCITS_2009_65_EC",
+      "expected_sources": [
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        25,
+        39
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Article 31",
+        "Article 76",
+        "twice a month"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q25",
+      "group": "Group 4: Prospectus Table & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-05",
+      "query": "According to Section 8.1 of the Lux Alpha SICAV Prospectus, what is the daily valuation point in CET, how are dividend entitlements recognized, and what rounding rule applies to NAV per share?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        1
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "16:00 CET",
+        "ROUND_HALF_UP",
+        "Ex-Dividend Date"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q26",
+      "group": "Group 4: Prospectus Table & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-05",
+      "query": "According to Section 8.2 of the Lux Alpha SICAV Prospectus, how does the statutory NAV error tolerance reference transition between valuation dates up to 31 December 2024 and valuation dates from 1 January 2025 onwards?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        2
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "31 December 2024",
+        "1 January 2025",
+        "Circular CSSF 02/77",
+        "Circular CSSF 24/856"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q27",
+      "group": "Group 4: Prospectus Table & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-05",
+      "query": "In Section 9.1 of the Lux Alpha SICAV Prospectus, what is the ISIN, annual management fee, and Luxembourg taxe d'abonnement for Class R (Retail), and does Footnote (*1) tiered reduction apply to Class R?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "LU2024000202",
+        "1.20%",
+        "0.05%",
+        "No tiered reduction applies to Class R"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q27_01",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "LU2024000202",
+          "target_value": "1.20%",
+          "max_char_window": 180
+        },
+        {
+          "assertion_id": "ECA_Q27_02",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "LU2024000202",
+          "target_value": "0.05%",
+          "max_char_window": 220
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q28",
+      "group": "Group 4: Prospectus Table & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-05",
+      "query": "In Section 9.1 of the Lux Alpha SICAV Prospectus, what is the annual management fee rate for Class H-USD, and what does Footnote (*2) require regarding currency hedging cost allocation under Paragraph 113?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Class H-USD",
+        "0.65%",
+        "(*2)",
+        "Paragraph 113"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q28_01",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "Class H-USD",
+          "target_value": "0.65%",
+          "max_char_window": 220
+        },
+        {
+          "assertion_id": "ECA_Q28_02",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "(*2)",
+          "target_value": "Paragraph 113",
+          "max_char_window": 300
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q29",
+      "group": "Group 5: Complex Statutory Tables & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-10",
+      "query": "Under Circular CSSF 24/856, what are the statutory NAV tolerance thresholds for retail UCITS compared to Part II UCIs and ELTIFs, and what specific limitations and derogations apply to non-standard asset categories in the accompanying explanatory footnotes?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        17
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.50%",
+        "1.00%",
+        "other eligible assets (*)",
+        "other assets (*)"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q29_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "other eligible assets (*)",
+          "target_value": "1.00%",
+          "max_char_window": 350
+        },
+        {
+          "assertion_id": "ECA_Q29_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "other assets (*)",
+          "target_value": "1.00%",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q30",
+      "group": "Group 5: Complex Statutory Tables & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-12",
+      "query": "Under Circular CSSF 24/856, when a significant NAV calculation error occurs resulting in either an undervalued NAV or an overvalued NAV, how is financial compensation allocated between redeeming investors, subscribing investors, and the collective investment undertaking?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        21
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "undervalued NAV",
+        "overvalued NAV",
+        "corrected NAV"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q31",
+      "group": "Group 5: Complex Statutory Tables & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-14",
+      "query": "In Section 6.1 of Circular CSSF 24/856, how do Table 6 (swing factor not applied) and Table 7 (applied swing factor exceeds set swing factor where UCI was over-protected) differ in UCI loss and investor compensation?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        31,
+        32
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 6",
+        "Table 7",
+        "swing factor",
+        "over-protected"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q32",
+      "group": "Group 5: Complex Statutory Tables & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-16",
+      "query": "In Section 6.1 of Circular CSSF 24/856, what does Table 8 specify when the applied swing factor was insufficient so the UCI was not sufficiently protected, and how does Footnote (*) calculate the exceedance?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        33
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 8",
+        "not sufficiently protected",
+        "(*)"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q32_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 8",
+          "target_value": "not sufficiently protected",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q33",
+      "group": "Group 5: Complex Statutory Tables & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-18",
+      "query": "Under Circular CSSF 24/856, what statutory criteria dictate whether an approved statutory auditor (REA) must issue an ad hoc Special Report rather than a sample-based Separate Report for NAV errors in UCITS/UCI Part II versus specialized investment vehicles such as SIFs and SICARs?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        42
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "EUR 50,000",
+        "EUR 5,000",
+        "Sample-based review"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q33_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "EUR 50,000",
+          "target_value": "EUR 5,000",
+          "max_char_window": 150
+        },
+        {
+          "assertion_id": "ECA_Q33_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "SIF/SICAR",
+          "target_value": "Sample-based review",
+          "max_char_window": 250
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q34",
+      "group": "Group 5: Complex Statutory Tables & Footnotes",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-20",
+      "query": "In Section 8.4 Paragraphs 150 and 151 of Circular CSSF 24/856, what do stitched Table 10 (investment breaches with Footnote (*)) and Table 11 (other errors under Chapter 6) require for REA intervention?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        43
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 10",
+        "Table 11",
+        "(*)"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q34_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 10",
+          "target_value": "Review of all the instances of non-compliance",
+          "max_char_window": 400
+        },
+        {
+          "assertion_id": "ECA_Q34_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "(*)",
+          "target_value": "Chapter 4",
+          "max_char_window": 300
+        },
+        {
+          "assertion_id": "ECA_Q34_03",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 11",
+          "target_value": "Review of all the other errors",
+          "max_char_window": 400
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q35",
+      "group": "Group 6: Operational Errors & Restitution Governance",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-21",
+      "query": "Under Chapter 2 (Points 1 to 7) of Circular CSSF 24/856, which UCI types (UCITS, UCI Part II, SIFs, SICARs, MMFs, ELTIFs, EuVECAs, EuSEFs) are in scope, and for which entities does Chapter 8 not apply?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        8,
+        9
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "UCITS",
+        "SICARs",
+        "EuVECA",
+        "EuSEF",
+        "Chapter 8"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q36",
+      "group": "Group 6: Operational Errors & Restitution Governance",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-22",
+      "query": "Under Section 3.5 (Point 25) of Circular CSSF 24/856, what must the Depositary do when it notices that the UCI dirigeants or IFM dirigeants do not act upon errors or instances of non-compliance?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        14
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Depositary",
+        "do not act",
+        "notify it to the CSSF"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q37",
+      "group": "Group 6: Operational Errors & Restitution Governance",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-23",
+      "query": "Under Section 6.2 (Points 104 and 105) of Circular CSSF 24/856, do the tolerance thresholds provided for in Chapter 4 apply to non-compliant payment of costs/fees, and how are undercharged fees handled retroactively?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        34
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "tolerance thresholds provided for in Chapter 4",
+        "do not apply",
+        "retroactively"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q38",
+      "group": "Group 6: Operational Errors & Restitution Governance",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-24",
+      "query": "Under Section 6.3 (Points 108 to 111) of Circular CSSF 24/856, what rules govern incorrect application of cut-off rules, and which circular on Late Trading and Market Timing must be verified?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        35
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "cut-off",
+        "Circular CSSF 04/146",
+        "Late Trading"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q39",
+      "group": "Group 6: Operational Errors & Restitution Governance",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-25",
+      "query": "Under Section 6.4 (Points 113 to 115) of Circular CSSF 24/856, what happens when currency hedging transactions are allocated to the wrong share class or when erroneously allocated investments generate a profit?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        35,
+        36
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "wrong share class",
+        "retain this profit"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q40",
+      "group": "Group 6: Operational Errors & Restitution Governance",
+      "challenge_type": "baseline",
+      "unanswerable": false,
+      "audit_date": "2025-03-26",
+      "query": "Under Sections 7.3 and 7.4 (Points 132 to 135) of Circular CSSF 24/856, where must unclaimed compensation for former investors be transferred under the Law of 29 April 1999, and who bears the fees resulting from corrective actions?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        38
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Caisse de consignation",
+        "Law of 29 April 1999",
+        "must not be borne by the UCI"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q41",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "What is the maximum permissible net asset pricing deviation cushion in basis points or percentage for a short-term liquidity collective vehicle governed by the European money market regulation before mandatory remediation is triggered?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        16
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.20%",
+        "Money market fund"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q41_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Money market fund",
+          "target_value": "0.20%",
+          "max_char_window": 260
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q42",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "When management executives of an alternative investment vehicle reserved exclusively for sophisticated or institutional capital allocators establish a bespoke valuation error materiality ceiling based on a documented risk analysis, what absolute upper percentage cap of net assets can never be exceeded?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        18
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "5%",
+        "well-informed"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q42_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "well-informed",
+          "target_value": "5%",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q43",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "If a collective investment undertaking is unable to locate departed unit-holders who fully redeemed their holdings prior to a valuation error restitution payout despite exhaustive research efforts, to which Luxembourg state treasury escrow body must the undistributed restitution funds be remitted?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        38
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Caisse de consignation",
+        "Law of 29 April 1999"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q44",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "When a service provider or fund manager owes financial restitution to a collective investment undertaking following an operational breach, is the responsible entity permitted to settle the reimbursement via periodic deferred payments over time or offset the liability against upcoming management fee invoices?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        36
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "instalments",
+        "future remuneration"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q45",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "What escalation duty applies to the appointed safekeeping bank of a Luxembourg collective fund if it observes that the governing board or conducting officers fail to remediate an identified operational breach or valuation discrepancy?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        14
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "depositary",
+        "dirigeants",
+        "notify"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q46",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Following the discovery of a compliance breach that does not require investor restitution, what is the statutory reporting window in weeks for filing the supervisory disclosure, and how frequently must progress updates be submitted if the independent statutory reviewer's ad-hoc assurance report takes longer than ninety days?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        44,
+        45
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "4 to 8 weeks",
+        "3 months",
+        "monthly basis"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q47",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2024-06-15",
+      "query": "When an investment fund operating in mid-2024 elects to make aggrieved unit-holders whole by issuing additional fractional participation units rather than sending a wire transfer or cheque, is the fund permitted to levy subscription loads or front-end entry charges on those newly issued shares?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        8
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "new units/shares",
+        "commissions or other entry costs"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q48",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "At what central European cut-off hour is the daily net unit price of the fund struck, on which specific corporate action date must declared equity cash distributions be booked into receivables before fee deductions, and what two-decimal rounding rule governs published share prices?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        1
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "16:00 CET",
+        "Ex-Dividend Date",
+        "ROUND_HALF_UP"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q49",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Under European retail fund rules, are investment companies, management companies, or safekeeping institutions permitted to act as third-party credit guarantors, extend loans, or execute naked short sales of transferable financial instruments?",
+      "expected_source": "UCITS_2009_65_EC",
+      "expected_sources": [
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        42
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Article 88",
+        "Article 89",
+        "uncovered sales",
+        "grant loans"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q50",
+      "group": "Group 7: Semantic Paraphrase & Zero-Lexical-Overlap",
+      "challenge_type": "semantic_paraphrase",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "If an investor executed both unit subscriptions and redemptions during a valuation discrepancy window—profiting on certain trades while incurring losses on others—under what condition may the fund administrator net the windfall against the loss, and from which investor category may involuntary windfalls be clawed back?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        21
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "well-informed/professional investor",
+        "net basis",
+        "same final beneficiary"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q51",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Table 2 of Circular CSSF 24/856, what is the exact NAV error tolerance threshold in % for UCITS investing primarily in 'other eligible assets (*)', and how does Footnote (*) beneath Table 2 define the scope of those 'other assets' alongside bonds and shares?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        17
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 2",
+        "1.00%",
+        "(*)",
+        "sole other assets in which a UCITS may invest"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q51_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 2",
+          "target_value": "1.00%",
+          "max_char_window": 450
+        },
+        {
+          "assertion_id": "ECA_Q51_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "(*)",
+          "target_value": "sole other assets in which a UCITS may invest",
+          "max_char_window": 260
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q52",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Table 3 of Circular CSSF 24/856, what is the default tolerance threshold for retail UCIs Part II and ELTIFs investing primarily in 'other assets (*)', what concrete asset examples are listed in Footnote (*) to Table 3, and what is the maximum cap under subpoint (d)(iii) if the UCI dirigeants use the derogation to set a higher threshold?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        17,
+        18
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 3",
+        "1.00%",
+        "unlisted shares, buildings, loans",
+        "5% of the NAV"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q52_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 3",
+          "target_value": "1.00%",
+          "max_char_window": 450
+        },
+        {
+          "assertion_id": "ECA_Q52_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "unlisted shares, buildings, loans",
+          "target_value": "(*)",
+          "max_char_window": 260
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q53",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Table 6 of Circular CSSF 24/856 (non-application of the swing factor), how is the dilution loss suffered by the UCI calculated in the first row, and how does Footnote (*) to Table 6 require the percentage exceedance of the tolerance threshold to be calculated for investor capital activity?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        32
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 6",
+        "net variation in capital",
+        "(*)",
+        "difference between the NAV per unit/share applied to transactions"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q53_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 6",
+          "target_value": "net variation in capital",
+          "max_char_window": 450
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q54",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "According to Table 7 of Circular CSSF 24/856, when an applied swing factor exceeds the factor set at the level of the UCI so the UCI has been over-protected, why is no compensation required for the UCI in the 'Corrective measure' row, and what formula does Footnote (*) to Table 7 prescribe for determining whether affected investors must be compensated under Chapter 4?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        32
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 7",
+        "over-protected",
+        "no compensation",
+        "(*)",
+        "corrected swing factor"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q54_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 7",
+          "target_value": "over-protected",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q55",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Table 8 of Circular CSSF 24/856, what is the impact on the UCI and the required corrective measure when the applied swing factor was insufficient, how does Footnote (*) calculate the tolerance threshold exceedance, and which three other dilution management tools are listed in Point 100 immediately below Table 8?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        33
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 8",
+        "not sufficiently protected",
+        "proper swing factor",
+        "(*)",
+        "anti-dilution levy"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q55_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 8",
+          "target_value": "not sufficiently protected",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q56",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Table 9 of Circular CSSF 24/856 (Paragraph 149), what do the 'Separate report' and 'Special report' columns specify for a significant NAV calculation error in a closed-ended UCI (UCI Part II or SIF/SICAR), and what verification duty does Footnote (*) to Table 9 still require the REA to perform as part of its statutory audit?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        42
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 9",
+        "No intervention (*)",
+        "statutory audit",
+        "constitutive documents"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q56_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 9",
+          "target_value": "No intervention (*)",
+          "max_char_window": 650
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q57",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In Table 10 of Circular CSSF 24/856 (Paragraph 150), when does active non-compliance with investment rules in a UCITS or UCI Part II require a Special Report ('Review of all the instances of non-compliance') rather than a sample-based Separate Report, and what condition does Footnote (*) to Table 10 attach to the EUR 5,000 single-investor threshold?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        43
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 10",
+        "EUR 50,000/EUR 5,000 (*)",
+        "Review of all the instances of non-compliance",
+        "exceeds the tolerance threshold applicable to the NAV errors"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q57_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 10",
+          "target_value": "EUR 50,000/EUR 5,000 (*)",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q58",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Comparing Table 10 and Table 11 on Page 43 of Circular CSSF 24/856, how is passive non-compliance with investment rules treated across UCITS/UCI Part II and SIF/SICAR in Table 10, and why do SIF/SICAR 'other errors' under Chapter 6 exceeding EUR 50,000/EUR 5,000 in Table 11 only trigger a sample-based review in the Separate Report rather than a Special Report?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        43
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 10",
+        "Table 11",
+        "Passive non-compliance",
+        "Sample-based review of the other errors"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q58_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 10",
+          "target_value": "Passive non-compliance",
+          "max_char_window": 700
+        },
+        {
+          "assertion_id": "ECA_Q58_02",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Table 11",
+          "target_value": "Sample-based review of the other errors",
+          "max_char_window": 700
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q59",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In the Section 9.1 fee schedule table of the Lux Alpha SICAV Prospectus, what are the exact ISIN code, base currency, subscription tax (taxe d'abonnement), and headline management fee for Class I (Institutional), and how does Footnote (*1) modify that headline fee rate when the sub-fund's Gross Asset Value (GAV) exceeds EUR 50,000,000?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "LU2024000101",
+        "0.01% per annum",
+        "0.40% per annum",
+        "0.30% per annum",
+        "EUR 50,000,000",
+        "(*1)"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q59_01",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "LU2024000101",
+          "target_value": "0.40% per annum",
+          "max_char_window": 180
+        },
+        {
+          "assertion_id": "ECA_Q59_02",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "(*1)",
+          "target_value": "0.30% per annum",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q60",
+      "group": "Group 8: Chunk Boundary & Table-Footnote Fusion",
+      "challenge_type": "table_footnote_fusion",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In the Section 9.1 fee schedule table of the Lux Alpha SICAV Prospectus, what are the ISIN code, base currency, annual management fee rate, and taxe d'abonnement for Class H-USD (Hedged), and how does Footnote (*2) link currency hedging cost allocation to Circular CSSF 24/856?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        3
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "LU2024000303",
+        "USD",
+        "0.65% per annum",
+        "0.05% per annum",
+        "(*2)",
+        "Paragraph 113"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q60_01",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "LU2024000303",
+          "target_value": "0.65% per annum",
+          "max_char_window": 180
+        },
+        {
+          "assertion_id": "ECA_Q60_02",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "(*2)",
+          "target_value": "Paragraph 113",
+          "max_char_window": 300
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q61",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In a European retail fund, what is the depositary's unit valuation oversight duty regarding how the value of units is calculated under Directive 2009/65/EC, and what escalation duty applies under Circular CSSF 24/856 when the UCI or IFM dirigeants do not act upon detected valuation errors?",
+      "expected_source": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        23,
+        14
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "value of units is calculated",
+        "do not act",
+        "notify it to the CSSF"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "UCITS_2009_65_EC",
+          "target_pages": [
+            23
+          ],
+          "required_anchors": [
+            "value of units is calculated"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            14
+          ],
+          "required_anchors": [
+            "do not act",
+            "notify it to the CSSF"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q62",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In the Lux Alpha SICAV Prospectus, what fee rate and allocation rules apply to Class H-USD currency hedging costs, and under Circular CSSF 24/856, how are allocation errors governed when currency hedging transactions are allocated to the wrong share class?",
+      "expected_source": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        3,
+        35
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Class H-USD",
+        "0.65%",
+        "wrong share class"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "LUX_ALPHA_PROSPECTUS",
+          "target_pages": [
+            3
+          ],
+          "required_anchors": [
+            "Class H-USD",
+            "0.65%"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            35,
+            36
+          ],
+          "required_anchors": [
+            "wrong share class"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q63",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Under Article 83 of UCITS Directive 2009/65/EC, what are the 10 % temporary and 15 % total borrowing limits for a UCITS, and under Section 5.5.3.1 (Point 79) of Circular CSSF 24/856, how is the accounting impact calculated when a UCI breaches its statutory or prospectus borrowing restrictions?",
+      "expected_source": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        41,
+        28
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Article 83",
+        "10 %",
+        "15 %",
+        "interests paid on the excess part of the borrowing"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "UCITS_2009_65_EC",
+          "target_pages": [
+            41
+          ],
+          "required_anchors": [
+            "Article 83",
+            "10 %",
+            "15 %"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            28
+          ],
+          "required_anchors": [
+            "interests paid on the excess part of the borrowing"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q64",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "If the fund administrator of Lux Alpha SICAV accrues and pays annual management fees using an Actual/360 day-count convention in breach of the Prospectus, how does Circular CSSF 24/856 treat overpaid costs or fees, and do the Chapter 4 NAV error tolerance thresholds apply?",
+      "expected_source": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        4,
+        34
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Actual/365",
+        "tolerance thresholds provided for in Chapter 4 do not apply"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "LUX_ALPHA_PROSPECTUS",
+          "target_pages": [
+            4
+          ],
+          "required_anchors": [
+            "Actual/365"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            34
+          ],
+          "required_anchors": [
+            "tolerance thresholds provided for in Chapter 4 do not apply"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q65",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "When a collective investment fund actively breaches single-body issuer concentration limits under European fund directives, what corrective action and impact calculation rules apply under Circular CSSF 24/856, and can the NAV error tolerance thresholds be applied to the resulting loss?",
+      "expected_source": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        32,
+        26
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "transferable securities",
+        "cannot be applied"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "UCITS_2009_65_EC",
+          "target_pages": [
+            32
+          ],
+          "required_anchors": [
+            "transferable securities"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            26
+          ],
+          "required_anchors": [
+            "cannot be applied"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q66",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2024-06-15",
+      "query": "For an audit conducted in June 2024, compare the borrowing restrictions and back-to-back foreign currency loan rules in Article 83 of UCITS Directive 2009/65/EC with the indemnification rules in Section II of Circular CSSF 02/77 when a UCI breaches its authorised borrowing limits.",
+      "expected_source": [
+        "UCITS_2009_65_EC",
+        "CSSF_02_77"
+      ],
+      "expected_sources": [
+        "UCITS_2009_65_EC",
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        41,
+        10,
+        11
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "Article 83",
+        "back-to-back",
+        "interest and other charges resulting from the non-authorised portion of the borrowings"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "UCITS_2009_65_EC",
+          "target_pages": [
+            41
+          ],
+          "required_anchors": [
+            "Article 83",
+            "back-to-back"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_02_77",
+          "target_pages": [
+            10,
+            11
+          ],
+          "required_anchors": [
+            "interest and other charges resulting from the non-authorised portion of the borrowings"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q67",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "How does Section 8.2 of the Lux Alpha SICAV Prospectus align with Chapter 10 (Points 162 and 163) of Circular CSSF 24/856 regarding the transition from Circular CSSF 02/77 to Circular CSSF 24/856 on 1 January 2025 and the treatment of errors detected between 29 March 2024 and 1 January 2025?",
+      "expected_source": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        2,
+        46
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "8.2. Statutory NAV Error Tolerance Reference",
+        "31 December 2024",
+        "1 January 2025",
+        "29 March 2024"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "LUX_ALPHA_PROSPECTUS",
+          "target_pages": [
+            2
+          ],
+          "required_anchors": [
+            "8.2. Statutory NAV Error Tolerance Reference",
+            "31 December 2024"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            46
+          ],
+          "required_anchors": [
+            "1 January 2025",
+            "29 March 2024"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q68",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "In the Lux Alpha SICAV Prospectus, which institution is designated as Depositary Bank and what is the official daily valuation point in CET, and under Directive 2009/65/EC, how is that depositary's liability affected if safe-keeping is entrusted to a third party?",
+      "expected_source": [
+        "LUX_ALPHA_PROSPECTUS",
+        "UCITS_2009_65_EC"
+      ],
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS",
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        1,
+        23
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "LuxTrust Depositary Bank S.A.",
+        "16:00 CET",
+        "not be affected"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "LUX_ALPHA_PROSPECTUS",
+          "target_pages": [
+            1
+          ],
+          "required_anchors": [
+            "LuxTrust Depositary Bank S.A.",
+            "16:00 CET"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "UCITS_2009_65_EC",
+          "target_pages": [
+            23
+          ],
+          "required_anchors": [
+            "not be affected"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q69",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2024-06-15",
+      "query": "According to Section 8.2 of the Lux Alpha SICAV Prospectus, which circular governs Valuation Days up to and including 31 December 2024, and under that circular, what are the money market UCI tolerance threshold and the EUR indemnification thresholds below which no corrective action plan is required?",
+      "expected_source": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_02_77"
+      ],
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS",
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        2,
+        3,
+        5
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "31 December 2024",
+        "Circular CSSF 02/77",
+        "0.25%",
+        "EUR 25,000"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "LUX_ALPHA_PROSPECTUS",
+          "target_pages": [
+            2
+          ],
+          "required_anchors": [
+            "31 December 2024",
+            "Circular CSSF 02/77"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_02_77",
+          "target_pages": [
+            3,
+            5
+          ],
+          "required_anchors": [
+            "0.25%",
+            "EUR 25,000"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q70",
+      "group": "Group 9: Cross-Document Multi-Hop Reasoning",
+      "challenge_type": "cross_document_multihop",
+      "unanswerable": false,
+      "audit_date": "2025-02-15",
+      "query": "Under Article 76 of UCITS Directive 2009/65/EC, how frequently must a UCITS make public the issue, sale, repurchase, or redemption price of its units, and under Section 6.3 (Points 108 to 111) of Circular CSSF 24/856, what rules and anti-Late Trading circular apply when subscription or redemption orders are executed at an incorrect NAV due to a cut-off breach?",
+      "expected_source": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_sources": [
+        "UCITS_2009_65_EC",
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        39,
+        35
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Article 76",
+        "twice a month",
+        "Circular CSSF 04/146",
+        "Late Trading"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [
+        {
+          "hop_id": "HOP_1",
+          "target_doc_id": "UCITS_2009_65_EC",
+          "target_pages": [
+            39
+          ],
+          "required_anchors": [
+            "Article 76",
+            "twice a month"
+          ]
+        },
+        {
+          "hop_id": "HOP_2",
+          "target_doc_id": "CSSF_24_856",
+          "target_pages": [
+            35
+          ],
+          "required_anchors": [
+            "Circular CSSF 04/146",
+            "Late Trading"
+          ]
+        }
+      ],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q71",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2024-12-31",
+      "query": "On the exact final day of 31 December 2024, what are the statutory NAV error tolerance thresholds for money market UCIs, bond/mixed UCIs, and equity UCIs, and what are the EUR indemnification thresholds below which no corrective action plan needs to be submitted?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        3,
+        5
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "0.25%",
+        "0.50%",
+        "1.00%",
+        "EUR 25,000",
+        "EUR 2,500"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q71_01",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "money market UCIs/cash funds",
+          "target_value": "0.25%",
+          "max_char_window": 180
+        },
+        {
+          "assertion_id": "ECA_Q71_02",
+          "doc_id": "CSSF_02_77",
+          "anchor_entity": "bond UCIs",
+          "target_value": "0.50%",
+          "max_char_window": 120
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q72",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2025-01-01",
+      "query": "On the exact effective date of 1 January 2025, what is the NAV error tolerance threshold in Table 1 for Money Market Funds (MMFs) under Circular CSSF 24/856, and what are the EUR compensation thresholds in Point 138 that trigger an additional control and special report by the REA?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        16,
+        39
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.20%",
+        "EUR 50,000",
+        "EUR 5,000"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q72_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Money market fund",
+          "target_value": "0.20%",
+          "max_char_window": 260
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q73",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2025-01-02",
+      "query": "An NAV calculation error occurred in November 2024, after the publication of Circular CSSF 24/856 on 29 March 2024. According to Points 162 and 163 in Chapter 10 of Circular CSSF 24/856, how does the applicable circular differ depending on whether the error was detected before 1 January 2025 versus detected as from 1 January 2025?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        46
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "1 January 2025",
+        "29 March 2024",
+        "Circular CSSF 02/77"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q74",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2025-01-15",
+      "query": "A Luxembourg UCITS has its financial year-end on 31 December 2024, while its REA performs the annual statutory audit in February 2025. Under Point 165 of Chapter 10 in Circular CSSF 24/856, must the REA's annual review and separate report under Circular CSSF 21/790 for the 31 December 2024 year-end follow Circular CSSF 02/77 or Chapter 8 of Circular CSSF 24/856?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        46
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "31 December 2024",
+        "1 January 2025",
+        "Circular CSSF 21/790",
+        "Circular CSSF 02/77"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q75",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2024-03-29",
+      "query": "On 29 March 2024, how is the de minimis lump-sum rule for individual investor indemnification governed under Section I.3(c) of the circular then in force, and can the de minimis rule be invoked if an investor expressly claims payment?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        7,
+        8
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "de minimis",
+        "approval of the CSSF",
+        "bank charges"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q76",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2025-01-01",
+      "query": "As of 1 January 2025 under Section 7.2.2 and Section 7.2.3 (Points 123 to 129) of Circular CSSF 24/856, how does the de minimis rule apply to investor compensation versus compensation payable to the UCI itself, and does the de minimis rule apply when compensation is made via allocation of additional units?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        37,
+        38
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "de minimis",
+        "one monetary unit",
+        "additional units"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q77",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2002-12-31",
+      "query": "On 31 December 2002, upon the entry into force of Circular CSSF 02/77, which prior circular of 15th March, 2000 was repealed under the Introduction and Section III Final Provisions, and how did its entry into force provision read?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        2,
+        12
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "CSSF circular 2000/8",
+        "15th March, 2000",
+        "immediately applicable in their entirety"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q78",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2024-12-31",
+      "query": "On 31 December 2024 under Section II of Circular CSSF 02/77, can NAV calculation error tolerance levels be applied to damages resulting from non-compliance with investment rules, and who must indemnify the UCI if the persons who caused the losses do not repay them?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        10,
+        11
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "cannot be applied to damages of UCIs resulting from non-compliance with investment rules",
+        "promoters will have to indemnify"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q79",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2025-01-01",
+      "query": "As of 1 January 2025 under Point 164 in Chapter 10 of Circular CSSF 24/856, what transitional disclosure obligation applies to UCITS, UCIs Part II, MMFs, and ELTIFs regarding final beneficiaries who subscribed through a financial intermediary when updating their prospectus?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        46
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Section 7.2.1.",
+        "final beneficiaries",
+        "financial intermediary",
+        "next update"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q80",
+      "group": "Group 10: Bitemporal Edge Cases & Transitional Traps",
+      "challenge_type": "bitemporal_boundary",
+      "unanswerable": false,
+      "audit_date": "2024-12-31",
+      "query": "On 31 December 2024 under Section I.3(b) of Circular CSSF 02/77, how are losses allocated between the UCI and redeeming or subscribing investors when the NAV is undervalued versus overvalued, and under what exception may the UCI call upon investors who involuntarily benefited from the error to repay the windfall?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        5,
+        6
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "undervalued",
+        "overvalued",
+        "institutional investors or other sophisticated investors"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q81",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under the MiCA Regulation (EU) 2023/1114 and CSSF crypto-asset custody guidelines, what is the maximum percentage of NAV that a Luxembourg retail UCITS is permitted to allocate directly to cold-wallet Bitcoin (BTC) and Ether (ETH) spot holdings, and what private-key multi-signature threshold applies to the depositary?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q82",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under SFDR Level 2 Regulatory Technical Standards (Delegated Regulation (EU) 2022/1288), what is the exact tolerance threshold in basis points for misreporting Principal Adverse Impact (PAI) Scope 3 greenhouse gas emissions indicators in an Article 9 dark-green sub-fund annex?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q83",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under Circular CSSF 18/698 regarding substance requirements for Luxembourg Investment Fund Managers, what is the maximum number of board mandates and aggregate AUM ceiling in EUR billions that a conducting officer is permitted to hold simultaneously?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q84",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under the Digital Operational Resilience Act (DORA, Regulation (EU) 2022/2554) and Circular CSSF 22/806 on cloud outsourcing, within how many hours must a Luxembourg SICAV report a major ICT-related cybersecurity ransomware incident affecting its transfer agency register?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q85",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under the PRIIPs Delegated Regulation (EU) 2017/653, how is the Cornish-Fisher Value-at-Risk (VaR) Market Risk Measure (MRM) mapped to the 1-to-7 Summary Risk Indicator (SRI) scale in the Key Information Document (KID) of Lux Alpha SICAV?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q86",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under EMIR Refit (Regulation (EU) 2019/834), what are the exact EUR notional clearing thresholds for OTC credit derivatives and interest rate derivatives that classify a Luxembourg AIF or UCITS as a Small Financial Counterparty (SFC-) exempt from mandatory central clearing?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q87",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "According to the Luxembourg FATCA Law of 24 July 2015 and the Common Reporting Standard (CRS) Law of 18 December 2015, what is the statutory annual June deadline for Lux Alpha SICAV to file nil or active reportable account returns with the Administration des contributions directes (ACD), and what EUR penalty applies for late filing?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q88",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under Circular CSSF 12/546 and AIFMD Delegated Regulation (EU) No 231/2013 Articles 7 and 8, how does the Gross Method of leverage calculation differ from the Commitment Method regarding the exclusion of cash borrowings and netting of interest rate duration hedges?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q89",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under the EU Taxonomy Regulation (EU) 2020/852 and the 'Do No Significant Harm' (DNSH) technical screening criteria, what minimum percentage of taxonomy-aligned capital expenditure (CapEx) must Lux Alpha SICAV Class ESG-I maintain to avoid greenwashing indemnification claims?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q90",
+      "group": "Group 11: Adversarial Out-of-Domain & Anti-Hallucination",
+      "challenge_type": "out_of_domain_adversarial",
+      "unanswerable": true,
+      "audit_date": "2025-02-15",
+      "query": "Under Basel III CRR II (Regulation (EU) 2019/876), what minimum Liquidity Coverage Ratio (LCR) and Net Stable Funding Ratio (NSFR) must LuxTrust Depositary Bank S.A. maintain on overnight cash sweep accounts held on behalf of Lux Alpha SICAV?",
+      "expected_source": null,
+      "expected_sources": [],
+      "expected_pages": [],
+      "forbidden_source": null,
+      "forbidden_sources": [],
+      "must_contain": [],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": {
+        "must_abstain": true,
+        "refusal_reason_code": "OUT_OF_CORPUS_REGULATION",
+        "max_retrieval_confidence": {
+          "vector_chunking": 0.75,
+          "page_index": 45.0
+        }
+      }
+    },
+    {
+      "id": "Q91",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-10",
+      "query": "Hi team, I'm wrapping up the Q1 2025 audit workpapers for our Monday morning partner sign-off in Kirchberg. Quick background: the fund manager spent 20 minutes on the call talking about ECB rate cuts, their new Bloomberg terminal migration in Zurich, and a 15-bps tracking difference on their synthetic equity sleeve, which is all irrelevant noise. What I actually need for my memo is: for our Luxembourg Money Market Fund (MMF) governed by the MMFR where an accrual glitch on 10 March 2025 caused a 22 bps NAV error with EUR 54,000 total compensation across the UCI and investors (and EUR 4,100 max to a single investor), what is the exact MMF tolerance threshold in Table 1 of Circular CSSF 24/856, and what are the two EUR thresholds in Point 138 that determine whether an REA special report is required?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        16,
+        39
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.20%",
+        "EUR 50,000",
+        "EUR 5,000"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q91_01",
+          "doc_id": "CSSF_24_856",
+          "anchor_entity": "Money market fund",
+          "target_value": "0.20%",
+          "max_char_window": 260
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q92",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-12",
+      "query": "Good afternoon, we are reviewing the Q1 2025 expense schedules prepared by the Dublin back-office team for Lux Alpha SICAV. They initially sent us the marketing pitch deck for their Tokyo roadshow and the biographies of the three independent directors, neither of which helps our recalculation. Looking specifically at Class I (Institutional) which currently holds EUR 80,000,000 in Gross Asset Value (GAV), the administrator applied a flat 40 bps rate on the entire GAV using an Actual/360 denominator. According to Sections 9.1 and 9.2 of the Lux Alpha SICAV Prospectus, what are the exact tiered fee rates and GAV threshold under Footnote (*1) for Class I, what mandatory day-count convention applies, and by what factor does Actual/360 overstate fund liabilities?",
+      "expected_source": "LUX_ALPHA_PROSPECTUS",
+      "expected_sources": [
+        "LUX_ALPHA_PROSPECTUS"
+      ],
+      "expected_pages": [
+        3,
+        4
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "0.40%",
+        "0.30%",
+        "EUR 50,000,000",
+        "Actual/365",
+        "365 / 360"
+      ],
+      "entity_context_assertions": [
+        {
+          "assertion_id": "ECA_Q92_01",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "Class I",
+          "target_value": "0.40%",
+          "max_char_window": 220
+        },
+        {
+          "assertion_id": "ECA_Q92_02",
+          "doc_id": "LUX_ALPHA_PROSPECTUS",
+          "anchor_entity": "(*1)",
+          "target_value": "0.30%",
+          "max_char_window": 350
+        }
+      ],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q93",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-15",
+      "query": "Hey Compliance Desk, sorry for the long message—we just got out of a heated two-hour Valuation Committee meeting where the portfolio manager tried to argue that because European tech stocks rallied 4% last Tuesday after the CPI print, they should be allowed to switch from the accounting method to the economic method mid-investigation for an active investment breach that was already identified last month, and compare the irregular bond against a single high-yield corporate bond they like. Under Section 5.5 (Points 74 and 82 to 85) of Circular CSSF 24/856, can a UCI change its impact determination method a posteriori for an instance of non-compliance already identified, who must approve any justified method change, and why can an isolated asset not be used as the comparative reference under the economic method?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        27,
+        29
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "accounting method",
+        "economic method",
+        "comparative reference",
+        "dirigeants"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q94",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-18",
+      "query": "Hello audit team, we are dealing with a messy remediation file for a global multi-asset UCITS distributed through nominee platforms in Germany, Italy, and Singapore. The transfer agent was complaining about SWIFT message formatting and holiday schedules in Milan, which we can ignore. The real compliance issues are: (1) several end-investors subscribed through omnibus financial intermediaries, (2) twelve former retail investors who fully redeemed in 2024 cannot be reached despite extensive tracing, and (3) the IFM wants to charge the EUR 18,000 legal and REA special report fees to the sub-fund's expense account. Under Chapter 7 (Points 121, 132, and 133 to 135) of Circular CSSF 24/856, what must the UCI do regarding the intermediation chain for final beneficiaries, where must unclaimed compensation for former investors be consigned, and can corrective action fees be borne by or recharged to the UCI?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        37,
+        38
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "financial intermediaries",
+        "trace back the intermediation chain",
+        "Caisse de consignation",
+        "must not be borne by the UCI"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q95",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2024-09-10",
+      "query": "Dear Senior Manager, I am reviewing a historical audit file dated 10 September 2024 for a Luxembourg mixed UCI that invested 60% in investment-grade corporate bonds and 40% in European blue-chip equities. Ignore the administrator's notes about their office relocation to Esch-sur-Alzette and their new payroll software. During August 2024, three successive daily pricing glitches occurred—each individually causing a 0.20% NAV impact—which accumulated to a 0.60% aggregate NAV error, with total investor and UCI indemnification of EUR 19,500 and a maximum single-investor payout of EUR 1,800. Under Circular CSSF 02/77 in force in September 2024, what is the tolerance threshold for mixed UCIs, how must unprocessed simultaneous or successive calculation errors be assessed, and is the external auditor's review performed during the annual audit of the UCI rather than via a special report?",
+      "expected_source": "CSSF_02_77",
+      "expected_sources": [
+        "CSSF_02_77"
+      ],
+      "expected_pages": [
+        3,
+        4,
+        9
+      ],
+      "forbidden_source": "CSSF_24_856",
+      "forbidden_sources": [
+        "CSSF_24_856"
+      ],
+      "must_contain": [
+        "0.50%",
+        "simultaneous or successive calculation errors",
+        "aggregate basis",
+        "EUR 25,000",
+        "EUR 2,500"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q96",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-20",
+      "query": "Hi everyone, during our walkthrough of the capital activity desk for a high-yield bond UCITS on 20 March 2025, the head trader spent half the meeting explaining credit default swap spreads and macro duration positioning, which isn't relevant to our operational error log. What matters is that over three volatile redemption days, the administrator made three distinct swing pricing errors: on Monday they forgot to apply the swing factor altogether, on Tuesday they applied a 1.50% swing factor instead of the 0.80% set factor (over-protecting the UCI), and on Wednesday they applied only 0.25% instead of 0.80% (leaving the UCI insufficiently protected). Under Section 6.1 (Tables 6, 7, and 8) of Circular CSSF 24/856, how do the impact on the UCI and the required UCI compensation differ across those three cases?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        32,
+        33
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 6",
+        "Table 7",
+        "Table 8",
+        "over-protected",
+        "not sufficiently protected"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q97",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-22",
+      "query": "Team, we are onboarding an umbrella UCITS with four sub-funds—including a fund of funds and an index-tracking sub-fund—that is marketed across Luxembourg, France, and a host jurisdiction abroad that mandates a stricter NAV error tolerance threshold than Luxembourg's default rules. Setting aside the marketing team's questions about logo placement and KIID translation invoices, what does Point 37(i), (iv), and (v) of Circular CSSF 24/856 require regarding: (a) applying a single tolerance threshold across share classes within a sub-fund, (b) determining the threshold for a fund of funds or index-tracking UCI, and (c) applying a foreign marketing country's more restrictive tolerance threshold across all investors regardless of their country of origin?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        19
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "sub-fund",
+        "single tolerance threshold",
+        "target UCIs",
+        "more restrictive tolerance threshold",
+        "all investors"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q98",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-24",
+      "query": "Good morning, our investment compliance desk is reviewing a proposed trade ticket from a newly hired portfolio manager who previously ran a Cayman hedge fund and wanted to buy physical gold bullion certificates and put 25% of the UCITS portfolio into a combination of equities, term deposits, and OTC derivatives with a single commercial banking group. Disregarding his commentary on commodity super-cycles, under Article 50(2)(b) and Article 52(1)-(5) of UCITS Directive 2009/65/EC (Pages 31 and 32), can a UCITS acquire precious metals or certificates representing them, what is the combined single-body limit for securities, deposits, and OTC derivatives under Article 52(2), and what is the maximum overall combined limit under Article 52(5)?",
+      "expected_source": "UCITS_2009_65_EC",
+      "expected_sources": [
+        "UCITS_2009_65_EC"
+      ],
+      "expected_pages": [
+        31,
+        32
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "precious metals",
+        "Article 52",
+        "20 %",
+        "35 %"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q99",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-25",
+      "query": "Hi Partner, quick update on the two investment restriction breaches flagged in our March 2025 surveillance run: the first breach happened purely because a sharp market sell-off reduced the sub-fund's NAV denominator without any new trades, while the second was an active purchase of an ineligible unlisted loan by a UCI Part II investing in illiquid assets. You can skip the investment advisor's long email about earnings season. Under Sections 5.2 and 5.4 (Points 54, 55, and 66) of Circular CSSF 24/856, how is passive versus active non-compliance defined, and how does the timeframe for implementing corrective action differ between a UCITS investing in liquid assets and a UCI (such as a SIF, SICAR, or UCI Part II) investing in less liquid or illiquid assets?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        23,
+        26
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "passive",
+        "beyond the control",
+        "active",
+        "without delay",
+        "less liquid or illiquid assets"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    },
+    {
+      "id": "Q100",
+      "group": "Group 12: Conversational Noise & Complex Audit Scenarios",
+      "challenge_type": "conversational_noise",
+      "unanswerable": false,
+      "audit_date": "2025-03-26",
+      "query": "Final question for our Q1 2025 audit committee pack—and please ignore the administrator's cover note about their upcoming Easter office closure. First, we have a Luxembourg SIF that suffered a significant NAV calculation error with EUR 120,000 in total compensation; according to Table 9 (Paragraph 149) of Circular CSSF 24/856, does a SIF exceeding the EUR 50,000 threshold require an ad-hoc Special Report or only a sample-based review in the Separate Report? Second, under Section 9.1.3 (Points 159 and 160), are the corrective actions indicated in the notification form subject to the CSSF's prior approval, and what supervisory actions may the CSSF perform on an ex post basis?",
+      "expected_source": "CSSF_24_856",
+      "expected_sources": [
+        "CSSF_24_856"
+      ],
+      "expected_pages": [
+        42,
+        45
+      ],
+      "forbidden_source": "CSSF_02_77",
+      "forbidden_sources": [
+        "CSSF_02_77"
+      ],
+      "must_contain": [
+        "Table 9",
+        "Sample-based review",
+        "risk-based approach",
+        "ex post basis"
+      ],
+      "entity_context_assertions": [],
+      "step_evidence_map": [],
+      "expected_refusal": null
+    }
+  ]
+}

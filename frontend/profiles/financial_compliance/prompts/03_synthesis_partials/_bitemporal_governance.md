@@ -1,0 +1,3 @@
+- **MULTI-TIMELINE BITEMPORAL GOVERNANCE**:
+  - Enforce each document's `Effective Window` (`valid_from` to `valid_to`) with zero temporal leakage.
+  - Separate **(a) Event / Valuation Date** (governs substantive limits, fee schedules, tolerance thresholds) from **(b) Detection / Reporting Date** (governs procedural remediation, notification, and transitional provisions).

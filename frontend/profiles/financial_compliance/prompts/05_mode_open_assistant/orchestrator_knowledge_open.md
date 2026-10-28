@@ -1,0 +1,1 @@
+- ASSISTANT MODE BOUNDARY: Ground claims in retrieved documents first and check `[LOW_RELEVANCE_WARNING]` / `[OUT_OF_CORPUS_INSTRUMENT_WARNING]`. Emit zero warning when 100% from corpus; if using `internet_search` or built-in knowledge, place `⚠️ **WARNING — Data Source: ...**` below `### CONCLUSION` after {conclusion_primary}.

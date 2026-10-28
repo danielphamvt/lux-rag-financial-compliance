@@ -1,0 +1,2402 @@
+body,
+.gradio-container,
+.gradio-container * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ---- Strict 4-Tier Font-Size System ----
+   1. Extra Small (Rất nhỏ): 11px  (--font-size-xs)
+   2. Small       (Nhỏ):     12px  (--font-size-sm)
+   3. Medium      (Vừa):     13px  (--font-size-md) - Default regular (400, normal)
+   4. Large       (To):      24px  (--font-size-lg) - ONLY "Hello, Auditor"
+*/
+:root,
+body,
+body.dark,
+.gradio-container,
+.gradio-container.dark {
+    --font-size-xs: 11px;
+    --font-size-sm: 12px;
+    --font-size-md: 13px;
+    --font-size-lg: 24px;
+    --color-primary: #1d4ed8;
+    --color-primary-hover: #1e40af;
+    --color-primary-soft: #eff6ff;
+    --color-primary-border: #bfdbfe;
+    --color-focus-ring: rgba(29, 78, 216, 0.45);
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #334155;
+    --color-text-muted: #475569;
+    --color-text-subtle: #64748b;
+    --color-surface: #ffffff;
+    --color-surface-subtle: #f8fafc;
+    --color-surface-sidebar: #f1f5f9;
+    --color-surface-hover: #e2e8f0;
+    --color-border: #e2e8f0;
+    --color-border-strong: #cbd5e1;
+    --z-base: 1;
+    --z-sticky: 20;
+    --z-scrim: 340;
+    --z-sidebar: 350;
+    --z-toggle: 360;
+    --z-dropdown: 400;
+    color-scheme: light !important;
+    --body-background-fill: #ffffff !important;
+    --body-text-color: #0f172a !important;
+    --body-text-color-subdued: #475569 !important;
+    --background-fill-primary: #ffffff !important;
+    --background-fill-secondary: #f8fafc !important;
+    --block-background-fill: #ffffff !important;
+    --block-border-color: #e2e8f0 !important;
+    --block-label-text-color: #475569 !important;
+    --block-title-text-color: #0f172a !important;
+    --input-background-fill: #f8fafc !important;
+    --input-border-color: #e2e8f0 !important;
+    --input-text-color: #0f172a !important;
+    --input-placeholder-color: #64748b !important;
+    --button-secondary-background-fill: #ffffff !important;
+    --button-secondary-text-color: #334155 !important;
+    --border-color-primary: #e2e8f0 !important;
+    --border-color-accent: #1d4ed8 !important;
+    --shadow-drop: rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Dark readable text inside the chat input frame (light background) */
+textarea {
+    color: #0f172a !important;
+}
+
+textarea::placeholder {
+    color: #64748b !important;
+}
+
+/* Chatbot output area and bubbles — explicit light rendering, since the
+   Chatbot component does not fully follow the theme tokens above */
+#chat-box,
+#chat-box .wrapper,
+#chat-box .wrap,
+#chat-box .bubble-wrap {
+    background: transparent !important;
+    color: #0f172a !important;
+}
+
+#chat-box .placeholder {
+    color: #64748b !important;
+}
+
+/* Flat chat look (gradio 5.x DOM: .message-row.user-row / .bot-row + .message):
+   assistant text sits directly on the page flush with the left edge (no icon/avatar, no bubble),
+   the user question gets a soft neutral bubble on the right */
+#chat-box .message-row.bot-row,
+#chat-box .bot-row {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    gap: 0 !important;
+    justify-content: flex-start !important;
+}
+
+#chat-box .bot-row .md,
+#chat-box .message.bot .md {
+    max-width: 880px !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+#chat-box .bot-row .message,
+#chat-box .message.bot {
+    background: transparent !important;
+    border: none !important;
+    color: #0f172a !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#chat-box .user-row .message,
+#chat-box .message.user {
+    background: #e8ebf0 !important;
+    color: #0f172a !important;
+    border: none !important;
+    border-radius: 16px !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    padding: 10px 16px !important;
+    overflow-wrap: anywhere !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+
+/* Uniform 13px font size for all User questions & AI answers;
+   User questions are regular (400, normal); AI answers preserve bold/italic emphasis */
+#chat-box .message,
+#chat-box .message *,
+#chat-box .prose,
+#chat-box .prose *,
+#chat-box .md,
+#chat-box .md * {
+    font-size: var(--font-size-md) !important;
+}
+
+#chat-box .user-row .message,
+#chat-box .user-row .message *,
+#chat-box .message.user,
+#chat-box .message.user * {
+    font-weight: 400 !important;
+    font-style: normal !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+
+#chat-box .bot-row .message,
+#chat-box .message.bot,
+#chat-box .bot-row p,
+#chat-box .bot-row li,
+#chat-box .bot-row td,
+#chat-box .message.bot p,
+#chat-box .message.bot li,
+#chat-box .message.bot td {
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Justified alignment for AI answer body text */
+#chat-box .bot-row .message,
+#chat-box .message.bot,
+#chat-box .bot-row .md,
+#chat-box .bot-row .prose,
+#chat-box .bot-row p,
+#chat-box .message.bot p,
+#chat-box .bot-row li,
+#chat-box .message.bot li,
+#chat-box .bot-row blockquote,
+#chat-box .message.bot blockquote {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+}
+
+/* Maintain clean left alignment for headings, code, and tables */
+#chat-box .bot-row h1,
+#chat-box .bot-row h2,
+#chat-box .bot-row h3,
+#chat-box .bot-row h4,
+#chat-box .bot-row h5,
+#chat-box .bot-row h6,
+#chat-box .bot-row pre,
+#chat-box .bot-row code,
+#chat-box .bot-row table,
+#chat-box .bot-row th,
+#chat-box .bot-row td,
+#chat-box .message.bot h1,
+#chat-box .message.bot h2,
+#chat-box .message.bot h3,
+#chat-box .message.bot h4,
+#chat-box .message.bot h5,
+#chat-box .message.bot h6,
+#chat-box .message.bot pre,
+#chat-box .message.bot code,
+#chat-box .message.bot table,
+#chat-box .message.bot th,
+#chat-box .message.bot td {
+    text-align: left !important;
+}
+
+/* Bold emphasis in AI answers: section headings (Conclusion, Detailed Statutory Analysis),
+   bold terms, Sources label, and table headers */
+#chat-box .bot-row h1,
+#chat-box .bot-row h2,
+#chat-box .bot-row h3,
+#chat-box .bot-row h4,
+#chat-box .bot-row h5,
+#chat-box .bot-row h6,
+#chat-box .bot-row strong,
+#chat-box .bot-row b,
+#chat-box .bot-row th,
+#chat-box .message.bot h1,
+#chat-box .message.bot h2,
+#chat-box .message.bot h3,
+#chat-box .message.bot h4,
+#chat-box .message.bot h5,
+#chat-box .message.bot h6,
+#chat-box .message.bot strong,
+#chat-box .message.bot b,
+#chat-box .message.bot th {
+    font-weight: 600 !important;
+    color: var(--color-text-primary) !important;
+}
+
+#chat-box .bot-row h1,
+#chat-box .bot-row h2,
+#chat-box .bot-row h3,
+#chat-box .message.bot h1,
+#chat-box .message.bot h2,
+#chat-box .message.bot h3 {
+    margin-top: 14px !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.4 !important;
+}
+
+#chat-box .bot-row h3:first-child,
+#chat-box .message.bot h3:first-child {
+    margin-top: 2px !important;
+}
+
+/* Italic emphasis in AI answers: statutory quotes, Latin terms, disclaimers,
+   and cited source items under Sources */
+#chat-box .bot-row em,
+#chat-box .bot-row i,
+#chat-box .bot-row blockquote,
+#chat-box .message.bot em,
+#chat-box .message.bot i,
+#chat-box .message.bot blockquote,
+#chat-box .bot-row hr~ul li,
+#chat-box .bot-row hr~ol li,
+#chat-box .message.bot hr~ul li,
+#chat-box .message.bot hr~ol li {
+    font-style: italic !important;
+}
+
+#chat-box [data-testid="user"] .message {
+    background: transparent !important;
+    border: none !important;
+}
+
+#chat-box .user-row {
+    /* gradio's .message is width:100% inside this fit-content row; without an
+       explicit fit-content here the circular sizing collapses the row (and the
+       bubble with it) to min-content — one word per line */
+    width: fit-content !important;
+    margin-left: auto !important;
+}
+
+/* Markdown content inside messages — light-mode tables, quotes, rules */
+.message-wrap .message table {
+    border-color: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+
+.message-wrap .message th,
+.message-wrap .message td {
+    border-color: #e2e8f0 !important;
+    background: transparent !important;
+    color: #0f172a !important;
+}
+
+.message-wrap .message blockquote {
+    border-left: 3px solid #cbd5e1 !important;
+    color: #475569 !important;
+    background: #f8fafc !important;
+}
+
+.message-wrap .message hr {
+    border-color: #e2e8f0 !important;
+}
+
+/* Text selection follows the corporate blue light theme */
+::selection {
+    background: rgba(29, 78, 216, 0.16);
+    color: #0f172a;
+}
+
+/* No horizontal scrollbars anywhere except inside code blocks */
+body,
+html,
+gradio-app,
+.gradio-container,
+#app-shell,
+#main,
+#sidebar,
+.conv-list {
+    overflow-x: hidden !important;
+}
+
+/* Full-height frame: sidebar + main shell, page scroll locked (chat area only).
+   100dvh adapts dynamically to iOS Safari's address/bottom bars while equaling 100vh on desktop. */
+body,
+html,
+gradio-app {
+    height: 100vh !important;
+    height: 100dvh !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.gradio-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    /* Lock the outer container scroll */
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Two-pane shell: fixed sidebar + flexible main column.
+   align-items:stretch overrides gradio's flex-start on Rows so #main
+   (and the bottom-pinned input bar) spans the full window height. */
+#app-shell {
+    flex: 1 1 0% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+}
+
+#sidebar {
+    position: relative !important;
+    flex: 0 0 350px !important;
+    width: 350px !important;
+    min-width: 180px !important;
+    max-width: 350px !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    border-right: 1px solid var(--color-border) !important;
+    background: var(--color-surface-sidebar) !important;
+    padding: 12px 10px 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    box-sizing: border-box !important;
+    transition:
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        min-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        flex-basis 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        border-right-width 0.3s ease !important;
+}
+
+/* Sidebar resizer disabled: fixed 180px open / 0px closed only */
+#sidebar-resizer,
+.sidebar-resizer {
+    display: none !important;
+}
+
+/* Collapse toggle: smoothly animate sidebar closed (0px) and open */
+#app-shell.collapsed #sidebar {
+    flex: 0 0 0px !important;
+    width: 0px !important;
+    min-width: 0px !important;
+    max-width: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    border-right-width: 0px !important;
+    opacity: 0 !important;
+    transform: translateX(-350px) !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+/* Floating expand button — pinned at top-left when sidebar is collapsed */
+#sidebar-expand {
+    display: none;
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    z-index: var(--z-toggle) !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--color-text-secondary) !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+#app-shell.collapsed #sidebar-expand {
+    display: flex !important;
+}
+
+#sidebar-expand:hover {
+    background: var(--color-surface-hover) !important;
+    color: var(--color-text-primary) !important;
+}
+
+#sidebar-expand svg {
+    width: 20px;
+    height: 20px;
+}
+
+#main {
+    flex: 1 1 0% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 26px 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    transition: padding-left 0.25s ease !important;
+}
+
+#app-shell.collapsed #main {
+    padding-left: 58px !important;
+}
+
+/* Prevent Gradio's .stretch > .column > * { flex-grow: 1 } rule from expanding
+   the invisible wrapper around the fixed #sidebar-expand button */
+#main> :first-child {
+    flex: 0 0 0px !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: visible !important;
+}
+
+/* Sidebar section labels ("Chats") — Tier 1: Extra Small (11px) */
+.sidebar-label {
+    font-size: var(--font-size-xs) !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--color-text-muted) !important;
+    padding: 10px 14px 4px !important;
+    margin: 0 !important;
+}
+
+.sidebar-list {
+    gap: 2px !important;
+    padding: 0 !important;
+}
+
+/* Sample questions — Tier 3: Medium (13px, regular 400, normal) */
+.sidebar-item,
+#sample-questions .sidebar-item {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 14px !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 999px !important;
+    color: var(--color-text-primary) !important;
+    cursor: pointer !important;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease !important;
+}
+
+#sample-questions .sidebar-item * {
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: inherit !important;
+    cursor: pointer !important;
+}
+
+.sidebar-item:hover,
+#sample-questions .sidebar-item:hover {
+    background: #dbe4f0 !important;
+    border-color: var(--color-primary-border) !important;
+    color: var(--color-primary) !important;
+    transform: translateX(3px) !important;
+    box-shadow: 0 1px 4px rgba(29, 78, 216, 0.1) !important;
+}
+
+.sidebar-item:active,
+#sample-questions .sidebar-item:active {
+    background: #c7d6eb !important;
+    transform: translateX(1px) !important;
+}
+
+/* New-chat action: Tier 2: Small (12px), unified 36px pill height */
+#new-chat-btn {
+    height: 36px !important;
+    min-height: 36px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    align-self: stretch !important;
+    margin: 2px 0 4px 0 !important;
+    border: 1px solid var(--color-border-strong) !important;
+    border-radius: 999px !important;
+    background: var(--color-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'/%3E%3Cpath d='M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z'/%3E%3C/svg%3E") no-repeat 12px center / 14px 14px !important;
+    color: var(--color-text-primary) !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0 12px 0 34px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
+}
+
+#new-chat-btn:hover {
+    background-color: var(--color-surface-subtle) !important;
+    border-color: #94a3b8 !important;
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.1) !important;
+}
+
+#new-chat-btn:active {
+    transform: scale(0.97) !important;
+}
+
+/* Sample questions accordion: quiet pill, clear SVG chevron */
+#sample-questions {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 2px 0 4px 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+    overflow: visible !important;
+}
+
+#sample-questions>div {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+/* Accordion header button — Tier 2: Small (12px), unified 36px pill geometry */
+#sample-questions>.label-wrap,
+#sample-questions button.label-wrap,
+#sample-questions .label-wrap,
+#sample-questions .label-wrap span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 12px 0 14px !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    color: var(--color-text-secondary) !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+#sample-questions .label-wrap span {
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+#sample-questions>.label-wrap:hover,
+#sample-questions button.label-wrap:hover,
+#sample-questions .label-wrap:hover {
+    background: var(--color-surface-hover) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Completely eradicate the native unicode triangle "▼" from Gradio */
+#sample-questions .label-wrap .icon,
+#sample-questions .label-wrap>.icon,
+#sample-questions .label-wrap span.icon {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Crisp SVG chevron that never distorts or loses strokes */
+#sample-questions .label-wrap::after {
+    content: '' !important;
+    display: inline-block !important;
+    flex: 0 0 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: auto !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23334155' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center center / 14px 14px !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease !important;
+    transform-origin: center center !important;
+    opacity: 0.75 !important;
+}
+
+#sample-questions .label-wrap:hover::after,
+#sample-questions button.label-wrap:hover::after {
+    opacity: 1 !important;
+}
+
+#sample-questions .label-wrap.open::after,
+#sample-questions [aria-expanded="true"] .label-wrap::after,
+#sample-questions [open] .label-wrap::after {
+    transform: rotate(90deg) !important;
+}
+
+/* Conversation search box: strip gradio's outer block frame */
+#conv-search {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 2px 0 6px 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+}
+
+/* Gradio textarea wrappers */
+#conv-search label,
+#conv-search .input-container,
+#chat-input label,
+#chat-input .input-container {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+}
+
+#conv-search textarea {
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+    resize: none !important;
+    white-space: nowrap !important;
+}
+
+/* Search pill: middle-left aligned icon + placeholder — Tier 2: Small (12px) */
+#conv-search textarea,
+#conv-search textarea:focus,
+#conv-search textarea:focus-visible {
+    background: var(--color-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 12px center / 14px 14px !important;
+    border: 1px solid var(--color-border-strong) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+    outline: none !important;
+    width: 100% !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    box-sizing: border-box !important;
+    padding: 8px 12px 8px 34px !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 18px !important;
+    color: var(--color-text-primary) !important;
+    caret-color: var(--color-text-primary) !important;
+    text-align: left !important;
+    overflow: hidden !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease !important;
+}
+
+#conv-search textarea:hover {
+    border-color: #94a3b8 !important;
+}
+
+#conv-search textarea:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.16) !important;
+    background-color: var(--color-surface) !important;
+}
+
+#conv-search textarea::placeholder {
+    color: var(--color-text-subtle) !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 18px !important;
+    text-align: left !important;
+    vertical-align: middle !important;
+}
+
+#conv-search:focus-within {
+    box-shadow: none !important;
+}
+
+/* Persisted conversation history: fills the leftover sidebar height and
+   scrolls independently; never collapses to 0 height */
+#sidebar > div:has(.conv-list),
+#sidebar .gradio-render:has(.conv-list),
+#sidebar div:has(.conv-list) {
+    flex: 1 1 auto !important;
+    min-height: 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.conv-list {
+    flex: 1 1 auto !important;
+    min-height: 80px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-bottom: 4px !important;
+    padding-right: 4px !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+#sidebar .block.hide-container,
+#sidebar .html-container {
+    overflow: visible !important;
+}
+
+.conv-empty {
+    padding: 10px 14px !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: var(--color-text-muted) !important;
+}
+
+/* History row = ONE pill: unified 36px height and 14px left padding */
+.conv-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    padding: 0 5px 0 0 !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    flex: 0 0 36px !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 2px !important;
+    cursor: pointer !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease !important;
+}
+
+.conv-row:hover {
+    background: #dbe4f0 !important;
+    border-color: var(--color-primary-border) !important;
+    transform: translateX(3px) !important;
+    box-shadow: 0 1px 4px rgba(29, 78, 216, 0.1) !important;
+}
+
+.conv-row.active {
+    background: #dbe4f0 !important;
+    border-color: #93c5fd !important;
+}
+
+/* Chat history titles — Tier 3: Medium (13px, regular 400, normal) */
+.conv-row.active .conv-title {
+    font-size: var(--font-size-md) !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    color: var(--color-primary) !important;
+}
+
+.conv-row .conv-title {
+    display: block !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 999px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    flex-shrink: 1 !important;
+    padding: 0 4px 0 14px !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: var(--color-text-primary) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    cursor: pointer !important;
+    transform: none !important;
+}
+
+.conv-row .conv-title * {
+    font-size: var(--font-size-md) !important;
+    font-weight: inherit !important;
+    font-style: normal !important;
+    color: inherit !important;
+    cursor: pointer !important;
+}
+
+.conv-row:hover .conv-title,
+.conv-row .conv-title:hover {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    color: var(--color-primary) !important;
+    transform: none !important;
+}
+
+.conv-delete {
+    flex: 0 0 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    max-width: 28px !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 50% !important;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6h18'/%3E%3Cpath d='M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2'/%3E%3Cpath d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'/%3E%3Cpath d='M10 11v6'/%3E%3Cpath d='M14 11v6'/%3E%3C/svg%3E") no-repeat center / 15px 15px !important;
+    opacity: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    margin: 0 4px 0 2px !important;
+}
+
+.conv-row:hover .conv-delete,
+.conv-row.active .conv-delete,
+.conv-delete:focus,
+.conv-delete:focus-visible {
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .conv-delete {
+        opacity: 0.75 !important;
+    }
+}
+
+.conv-delete:hover {
+    background-color: #cbd5e1 !important;
+}
+
+.conv-list::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.conv-list::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.conv-list::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.3) !important;
+    border-radius: 10px !important;
+}
+
+/* Flexbox fix (gradio 5.x DOM): pass viewport height down the wrapper chain
+   main.fillable → .wrap → .contain → root .column, so the app shell fills the
+   window at ANY resolution and the input bar pins to the bottom.
+   (Old gradio-4 selectors like `.main` match nothing in 5.50.) */
+.gradio-container>main,
+.gradio-container>main>.wrap,
+.gradio-container>main>.wrap>.contain,
+.gradio-container>main>.wrap>.contain>.column {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    flex-grow: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    /* Important to remove the second scrollbar */
+}
+
+/* Ultra-thin, very faint scrollbar for the main chat frame & reasoning/input boxes.
+   Resetting scrollbar-width/scrollbar-color to auto on WebKit/Blink ensures Gradio 5's
+   built-in scrollbar-color rule does not disable custom ::-webkit-scrollbar styling. */
+#main,
+#chat-box,
+#chat-box *,
+#reasoning-box,
+.reasoning-box,
+#chat-input textarea {
+    scrollbar-width: auto !important;
+    scrollbar-color: auto !important;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    #main,
+    #chat-box,
+    #chat-box *,
+    #reasoning-box,
+    .reasoning-box,
+    #chat-input textarea {
+        scrollbar-width: thin !important;
+        scrollbar-color: rgba(148, 163, 184, 0.14) transparent !important;
+    }
+}
+
+div[class*="bubble-wrap"]::-webkit-scrollbar,
+#main::-webkit-scrollbar,
+#chat-box::-webkit-scrollbar,
+#chat-box *::-webkit-scrollbar,
+#reasoning-box::-webkit-scrollbar,
+.reasoning-box::-webkit-scrollbar,
+#chat-input textarea::-webkit-scrollbar {
+    width: 4px !important;
+    height: 4px !important;
+}
+
+div[class*="bubble-wrap"]::-webkit-scrollbar-track,
+#main::-webkit-scrollbar-track,
+#chat-box::-webkit-scrollbar-track,
+#chat-box *::-webkit-scrollbar-track,
+#reasoning-box::-webkit-scrollbar-track,
+.reasoning-box::-webkit-scrollbar-track,
+#chat-input textarea::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+div[class*="bubble-wrap"]::-webkit-scrollbar-thumb,
+#main::-webkit-scrollbar-thumb,
+#chat-box::-webkit-scrollbar-thumb,
+#chat-box *::-webkit-scrollbar-thumb,
+#reasoning-box::-webkit-scrollbar-thumb,
+.reasoning-box::-webkit-scrollbar-thumb,
+#chat-input textarea::-webkit-scrollbar-thumb {
+    background-color: rgba(148, 163, 184, 0.14) !important;
+    border-radius: 999px !important;
+}
+
+div[class*="bubble-wrap"]::-webkit-scrollbar-thumb:hover,
+#main::-webkit-scrollbar-thumb:hover,
+#chat-box::-webkit-scrollbar-thumb:hover,
+#chat-box *::-webkit-scrollbar-thumb:hover,
+#reasoning-box::-webkit-scrollbar-thumb:hover,
+.reasoning-box::-webkit-scrollbar-thumb:hover,
+#chat-input textarea::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(148, 163, 184, 0.28) !important;
+}
+
+/* Hide chatbot avatar icon completely so AI responses sit flush left */
+#chat-box .avatar-image,
+#chat-box .avatar-container,
+#chat-box [data-testid="bot-avatar"],
+#chat-box [data-testid="user-avatar"] {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#chat-box {
+    flex: 1 1 0% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding-top: 8px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 4px !important;
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 880px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#chat-box .bubble-wrap,
+#chat-box .message-wrap {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* Custom styling for Code block */
+code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+pre {
+    background-color: #f6f8fa;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Input frame: white stadium bar pinned to the bottom of the main column */
+#custom-input-container {
+    gap: 0 !important;
+    margin-top: auto !important;
+    margin-bottom: 16px !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    max-width: 880px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+}
+
+#custom-input-container .input-row {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border-strong) !important;
+    border-radius: 26px !important;
+    padding: 4px 6px 4px 10px !important;
+    box-shadow: 0 1px 6px rgba(15, 23, 42, 0.06) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease, min-height 0.15s ease, height 0.15s ease, border-radius 0.15s ease !important;
+}
+
+/* When 2 or more lines are pasted/typed: expand input height to > 2x single-line height */
+#custom-input-container.is-multiline .input-row,
+body.chat-input-multiline #custom-input-container .input-row {
+    min-height: 116px !important;
+    height: auto !important;
+    border-radius: 20px !important;
+    align-items: flex-end !important;
+    padding: 8px 6px 8px 10px !important;
+}
+
+#custom-input-container.is-multiline #chat-input,
+#custom-input-container.is-multiline #chat-input>label,
+#custom-input-container.is-multiline #chat-input .input-container,
+body.chat-input-multiline #chat-input,
+body.chat-input-multiline #chat-input>label,
+body.chat-input-multiline #chat-input .input-container {
+    height: auto !important;
+    min-height: 100px !important;
+    max-height: 180px !important;
+}
+
+#custom-input-container .input-row:focus-within {
+    border-color: #94a3b8 !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.09), 0 0 0 2px rgba(29, 78, 216, 0.12) !important;
+}
+
+.input-helper-note {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    font-size: var(--font-size-xs) !important;
+    color: var(--color-text-muted) !important;
+    text-align: center !important;
+    margin-top: 6px !important;
+    user-select: none !important;
+    line-height: 1.4 !important;
+}
+
+/* Gemini Plus Menu inside Chat Input */
+#input-plus-menu-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    align-self: center !important;
+    flex: 0 0 36px !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    height: 36px !important;
+    position: relative !important;
+    overflow: visible !important;
+    z-index: var(--z-dropdown) !important;
+}
+
+#custom-input-container.is-multiline #input-plus-menu-wrapper {
+    align-self: flex-end !important;
+    margin-bottom: 2px !important;
+}
+
+/* Hide Gradio loading overlay inside plus wrapper so it does not push the button down */
+#input-plus-menu-wrapper>.wrap {
+    display: none !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+#input-plus-menu-wrapper .html-container,
+#input-plus-menu-wrapper .prose,
+#plus-menu-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+.plus-menu-container {
+    position: relative !important;
+    overflow: visible !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.plus-btn {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    background: transparent !important;
+    color: var(--color-text-secondary) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease !important;
+}
+
+.plus-btn:hover {
+    background-color: var(--color-surface-sidebar) !important;
+    color: var(--color-text-primary) !important;
+}
+
+.plus-btn:active {
+    transform: scale(0.94) !important;
+}
+
+.plus-btn.is-open {
+    background-color: var(--color-surface-hover) !important;
+    color: var(--color-text-primary) !important;
+}
+
+.plus-btn svg {
+    display: block !important;
+    pointer-events: none !important;
+}
+
+/* Gemini Source Dropdown Menu (Opens upwards above the plus button) */
+.plus-dropdown {
+    display: none !important;
+    position: absolute !important;
+    bottom: calc(100% + 14px) !important;
+    left: -4px !important;
+    min-width: 190px !important;
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+    padding: 6px !important;
+    z-index: var(--z-dropdown) !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    user-select: none !important;
+}
+
+.plus-dropdown.is-open {
+    display: flex !important;
+    animation: plusMenuSlideUp 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes plusMenuSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.plus-dropdown-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 9px 14px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: var(--color-text-secondary) !important;
+    transition: background-color 0.12s ease, color 0.12s ease !important;
+}
+
+.plus-dropdown-item:hover {
+    background-color: var(--color-surface-sidebar) !important;
+    color: var(--color-text-primary) !important;
+}
+
+.plus-dropdown-item.active {
+    background-color: var(--color-primary-soft) !important;
+    color: var(--color-primary) !important;
+    font-weight: 500 !important;
+}
+
+.plus-dropdown-item.is-disabled,
+.plus-dropdown-item.is-disabled:hover {
+    opacity: 0.42 !important;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+    color: var(--color-text-muted) !important;
+}
+
+.plus-item-check {
+    width: 18px !important;
+    height: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    color: var(--color-primary) !important;
+}
+
+.plus-item-check svg {
+    display: none !important;
+    stroke: currentColor !important;
+}
+
+.plus-dropdown-item.active .plus-item-check svg {
+    display: block !important;
+}
+
+.plus-item-title {
+    font-size: var(--font-size-sm) !important;
+    font-weight: inherit !important;
+    font-style: normal !important;
+    line-height: 1.2 !important;
+}
+
+/* Round send & stop buttons: identical 38px × 38px 1:1 circular geometry */
+#submit-btn,
+#stop-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    flex: 0 0 38px !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50% !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    align-self: center !important;
+    box-sizing: border-box !important;
+}
+
+#submit-btn {
+    background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5'/%3E%3Cpath d='M5 12l7-7 7 7'/%3E%3C/svg%3E") no-repeat center / 18px 18px !important;
+    box-shadow: 0 1px 4px rgba(29, 78, 216, 0.3) !important;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
+}
+
+#submit-btn:hover {
+    background-color: var(--color-primary-hover) !important;
+    box-shadow: 0 2px 10px rgba(29, 78, 216, 0.45) !important;
+}
+
+/* Stop button: identical 38px circle as Send, Slate-700 with a centered rounded-square stop glyph */
+#stop-btn {
+    background: var(--color-text-secondary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='7.5' y='7.5' width='9' height='9' rx='2' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat center / 18px 18px !important;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.25) !important;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+#stop-btn:hover {
+    background-color: var(--color-text-primary) !important;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.35) !important;
+}
+
+#stop-btn:focus-visible {
+    outline: 2px solid var(--color-focus-ring) !important;
+    outline-offset: 2px !important;
+}
+
+/* Welcome hero & App header title: Large (24px) with unified gradient color */
+#welcome-hero {
+    text-align: left;
+    padding: 14vh 0 0;
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+#chat-box #welcome-hero h1,
+#welcome-hero h1,
+#chat-box #welcome-hero h1 .hero-name,
+#welcome-hero .hero-name,
+#app-header h1 {
+    font-size: var(--font-size-lg) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    letter-spacing: 0;
+    line-height: 1.25 !important;
+    background: linear-gradient(74deg, #4285f4 15%, #9b72cb 55%, #d96570 90%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+}
+
+#welcome-hero h1 {
+    margin: 0 0 6px;
+}
+
+#chat-box #welcome-hero h2,
+#welcome-hero h2 {
+    margin: 8px 0 0;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+#chat-box #welcome-hero p.hero-subtitle,
+#welcome-hero p.hero-subtitle {
+    margin: 4px 0 14px 0 !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 1.55 !important;
+    color: var(--color-text-muted) !important;
+    text-align: left !important;
+}
+
+#welcome-hero .hero-docs {
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    font-size: var(--font-size-md) !important;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+#welcome-hero .hero-docs-title {
+    font-weight: 600 !important;
+    color: var(--color-text-primary) !important;
+    margin-bottom: 6px;
+}
+
+#welcome-hero .hero-docs-list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#welcome-hero .hero-docs-list li {
+    text-align: left !important;
+}
+
+#welcome-hero .hero-doc-link {
+    color: var(--color-primary) !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 600 !important;
+}
+
+#welcome-hero .hero-doc-link:hover {
+    color: var(--color-primary-hover) !important;
+}
+
+#welcome-hero .hero-doc-desc {
+    color: var(--color-text-muted) !important;
+}
+
+#chat-box #welcome-hero p.hero-cta,
+#welcome-hero p.hero-cta {
+    margin: 18px 0 0 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    line-height: 1.5 !important;
+    color: var(--color-text-primary) !important;
+    text-align: left !important;
+}
+
+/* Brand header — sticky top bar inside sidebar so scrolling history never overlaps toggle */
+#app-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 38px 4px 8px 4px;
+    margin-top: 0;
+    margin-bottom: 2px;
+    background: var(--color-surface-sidebar);
+    border: none;
+    color: var(--color-text-primary);
+}
+
+#sidebar-collapse {
+    position: absolute !important;
+    top: 0px !important;
+    left: 2px !important;
+    z-index: var(--z-toggle) !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    color: var(--color-text-secondary) !important;
+    cursor: pointer !important;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+#app-shell.collapsed #sidebar-collapse {
+    display: none !important;
+}
+
+#sidebar-collapse:hover {
+    background: var(--color-surface-hover) !important;
+    color: var(--color-text-primary) !important;
+}
+
+#sidebar-collapse svg {
+    width: 20px;
+    height: 20px;
+}
+
+#app-header .brand-text {
+    min-width: 0;
+}
+
+#app-header .brand-logo-link {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: inline-block;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+#app-header .brand-logo-link:hover {
+    opacity: 0.85;
+}
+
+/* Program title — Tier 4: Large (24px) & same gradient color as "Hello, Auditor" */
+#app-header h1 {
+    margin: 0;
+    white-space: normal;
+    overflow: visible;
+}
+
+/* Program subtitle — Tier 1: Extra Small (11px) */
+#app-header .brand-subtitle {
+    margin: 4px 0 0;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+/* Profile pill pinned at the bottom of the sidebar */
+#profile-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    margin-top: 4px;
+    border-radius: 999px;
+    cursor: default;
+    transition: background 0.15s ease;
+}
+
+#profile-pill:hover {
+    background: var(--color-surface-hover);
+}
+
+#profile-pill .profile-avatar {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4285f4, #9b72cb) !important;
+    color: #ffffff !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    letter-spacing: 0.02em;
+}
+
+/* User Name — Tier 3: Medium (13px) */
+#profile-pill .profile-name {
+    font-size: var(--font-size-md) !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Sidebar footer badges — Tier 1: Extra Small (11px) */
+#app-footer .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    border-radius: 999px;
+    background: var(--color-surface-hover);
+    border: none;
+    color: var(--color-text-secondary);
+}
+
+/* Softer chat bubbles */
+.message-wrap .message {
+    border-radius: 18px !important;
+    line-height: 1.65;
+}
+
+/* Input area */
+footer {
+    display: none !important;
+}
+
+/* Sidebar footer: badges + disclaimer kept compact above the profile pill */
+#app-footer {
+    margin-top: 4px;
+    padding: 8px 6px 0;
+    border-top: 1px solid var(--color-border-strong);
+}
+
+#app-footer .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+#app-footer .disclaimer,
+#app-footer .disclaimer strong {
+    margin: 0;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+}
+
+/* Hide the overridden "chatbot" label — only inside the chat frame */
+#chat-box .label-wrap {
+    display: none !important;
+}
+
+/* Hide gradio's built-in Clear button (top-right) */
+#chat-box .icon-button[aria-label="Clear"] {
+    display: none !important;
+}
+
+/* Child flex components */
+#command-chip-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: fit-content !important;
+    flex: 0 0 auto !important;
+}
+
+#command-chip-wrapper>*,
+#command-chip-wrapper .html-container,
+#command-chip-wrapper .prose {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+#chat-input,
+#chat-input>label,
+#chat-input .input-container,
+#chat-input textarea {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+#chat-input {
+    flex: 1 1 0% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Chat Input Box — Tier 3: Medium (13px, regular 400, normal).
+   Single-line height = 40px. When >= 2 lines (.is-multiline), expands > 2x to 100px+ */
+#chat-input textarea,
+#chat-input textarea:focus {
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    padding: 10px 8px !important;
+    color: var(--color-text-primary) !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    line-height: 20px !important;
+    margin: 0 !important;
+    resize: none !important;
+    overflow-y: hidden !important;
+    transition: height 0.15s ease, min-height 0.15s ease, max-height 0.15s ease !important;
+}
+
+#chat-input textarea::placeholder {
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    color: var(--color-text-subtle) !important;
+}
+
+#custom-input-container.is-multiline #chat-input textarea,
+#custom-input-container.is-multiline #chat-input textarea:focus,
+body.chat-input-multiline #chat-input textarea,
+body.chat-input-multiline #chat-input textarea:focus {
+    height: 104px !important;
+    min-height: 104px !important;
+    max-height: 180px !important;
+    overflow-y: auto !important;
+}
+
+/* Command chip display — Tier 2: Small (12px) */
+.cmd-chip {
+    background: var(--color-primary-soft) !important;
+    border: 1px solid var(--color-primary-border) !important;
+    color: var(--color-primary-hover) !important;
+    padding: 4px 6px 4px 10px !important;
+    border-radius: 999px !important;
+    font-size: var(--font-size-sm) !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    user-select: none !important;
+    pointer-events: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    line-height: 1.2 !important;
+}
+
+.cmd-chip-remove {
+    background: transparent !important;
+    border: none !important;
+    color: var(--color-primary) !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.12s ease, color 0.12s ease !important;
+}
+
+.cmd-chip-remove:hover {
+    background-color: rgba(29, 78, 216, 0.14) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Spinner CSS Animation & Perfectly Circular Thinking Spinner */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.thinking-spinner {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 4px 0 !important;
+    margin: 4px 0 !important;
+    min-height: 24px !important;
+    color: var(--color-text-muted) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 1.4 !important;
+}
+
+.thinking-spinner svg.animate-spin,
+.thinking-spinner .spinner-svg,
+.animate-spin {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+    min-height: 16px !important;
+    max-height: 16px !important;
+    flex: 0 0 16px !important;
+    aspect-ratio: 1 / 1 !important;
+    display: inline-block !important;
+    border-radius: 50% !important;
+    transform-origin: 50% 50% !important;
+    animation: spin 0.85s linear infinite !important;
+}
+
+/* Ensure spinner never stays trapped inside #reasoning-box */
+#reasoning-box .thinking-spinner,
+.reasoning-box .thinking-spinner {
+    display: none !important;
+}
+
+/* Reasoning box: Modern collapsible thought block — WCAG AA contrast & Tier 1/2 typography */
+#reasoning-box,
+.reasoning-box {
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    background: var(--color-surface-subtle) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 10px !important;
+    padding: 8px 14px !important;
+    max-height: 360px !important;
+    overflow-y: auto !important;
+    margin-bottom: 12px !important;
+    transition: background 0.15s ease, border-color 0.15s ease !important;
+}
+
+#reasoning-box,
+#reasoning-box *,
+.reasoning-box,
+.reasoning-box * {
+    font-weight: 400 !important;
+    font-style: italic !important;
+}
+
+#reasoning-box>summary,
+.reasoning-box>summary {
+    font-size: var(--font-size-sm) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    color: var(--color-text-muted) !important;
+    cursor: pointer !important;
+    list-style: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    user-select: none !important;
+    line-height: 1.4 !important;
+    border-radius: 6px !important;
+}
+
+.reasoning-icon-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 15px !important;
+    height: 15px !important;
+    flex: 0 0 15px !important;
+}
+
+/* Spinner icon */
+.reasoning-spin-icon {
+    display: inline-block !important;
+    animation: spin 0.85s linear infinite !important;
+    width: 13px !important;
+    height: 13px !important;
+    color: var(--color-text-muted) !important;
+    stroke: var(--color-text-muted) !important;
+    flex: 0 0 13px !important;
+}
+
+/* Static checkmark icon: Shows Done */
+.reasoning-done-icon {
+    display: inline-block !important;
+    width: 13px !important;
+    height: 13px !important;
+    color: var(--color-text-muted) !important;
+    stroke: var(--color-text-muted) !important;
+    flex: 0 0 13px !important;
+}
+
+#reasoning-box>summary b,
+#reasoning-box>summary strong,
+#reasoning-box>summary span,
+#reasoning-box>summary i,
+.reasoning-box>summary b,
+.reasoning-box>summary strong,
+.reasoning-box>summary span,
+.reasoning-box>summary i {
+    font-weight: 400 !important;
+    font-style: italic !important;
+    font-size: var(--font-size-sm) !important;
+    color: var(--color-text-muted) !important;
+}
+
+#reasoning-box>summary::-webkit-details-marker,
+.reasoning-box>summary::-webkit-details-marker {
+    display: none !important;
+}
+
+#reasoning-box>summary span.reasoning-timer,
+.reasoning-box>summary span.reasoning-timer {
+    margin-left: auto !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: var(--font-size-xs) !important;
+    font-style: normal !important;
+    font-variant-numeric: tabular-nums !important;
+    color: var(--color-text-subtle) !important;
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 999px !important;
+    padding: 1px 7px !important;
+    line-height: 1.35 !important;
+}
+
+#reasoning-box>summary span.reasoning-timer:empty,
+.reasoning-box>summary span.reasoning-timer:empty {
+    display: none !important;
+}
+
+/* Chevron arrow on the right — proportional to 12px summary label */
+#reasoning-box>summary::after,
+.reasoning-box>summary::after {
+    content: '' !important;
+    flex: 0 0 auto !important;
+    width: 7px !important;
+    height: 7px !important;
+    margin-left: auto !important;
+    border-right: 1.8px solid var(--color-text-subtle) !important;
+    border-bottom: 1.8px solid var(--color-text-subtle) !important;
+    transform: rotate(-45deg) !important;
+    transition: transform 0.15s ease !important;
+}
+
+#reasoning-box>summary:has(.reasoning-timer:not(:empty))::after,
+.reasoning-box>summary:has(.reasoning-timer:not(:empty))::after {
+    margin-left: 4px !important;
+}
+
+#reasoning-box[open]>summary::after,
+.reasoning-box[open]>summary::after {
+    transform: rotate(45deg) !important;
+}
+
+.reasoning-body {
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    border-top: 1px solid var(--color-border) !important;
+    color: var(--color-text-muted) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    line-height: 1.6 !important;
+}
+
+.reasoning-body div,
+.reasoning-body p,
+.reasoning-body span,
+.reasoning-body li,
+.reasoning-body ul,
+.reasoning-body ol {
+    color: var(--color-text-muted) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    line-height: 1.6 !important;
+}
+
+.reasoning-body strong,
+.reasoning-body b {
+    color: var(--color-text-secondary) !important;
+    font-weight: 500 !important;
+    font-style: italic !important;
+}
+
+.reasoning-body code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    background: var(--color-surface-hover) !important;
+    color: var(--color-text-secondary) !important;
+    padding: 1px 5px !important;
+    border-radius: 4px !important;
+}
+
+.reasoning-step-header {
+    margin-top: 6px !important;
+    margin-bottom: 3px !important;
+    color: var(--color-text-secondary) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 500 !important;
+    font-style: italic !important;
+}
+
+.reasoning-step-header .step-num {
+    color: var(--color-text-muted) !important;
+    margin-right: 3px !important;
+    font-weight: 500 !important;
+    font-style: italic !important;
+}
+
+.reasoning-bullet {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    margin-left: 8px !important;
+    margin-bottom: 3px !important;
+    line-height: 1.55 !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+}
+
+.reasoning-bullet .bullet-dot {
+    color: var(--color-text-subtle) !important;
+    flex: 0 0 8px !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    user-select: none !important;
+}
+
+.reasoning-bullet .bullet-text {
+    flex: 1 1 auto !important;
+    color: var(--color-text-muted) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+}
+
+.reasoning-tool-pill {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 5px !important;
+    padding: 2px 7px !important;
+    margin-bottom: 5px !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    color: var(--color-text-muted) !important;
+    line-height: 1.45 !important;
+}
+
+.reasoning-tool-pill b,
+.reasoning-tool-pill strong,
+.reasoning-tool-pill code {
+    font-weight: 400 !important;
+    font-style: italic !important;
+}
+
+#reasoning-box .reasoning-rag-card,
+.reasoning-box .reasoning-rag-card {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+    margin: 4px 0 6px 0 !important;
+    text-align: left !important;
+}
+
+#reasoning-box .reasoning-rag-card *,
+.reasoning-box .reasoning-rag-card * {
+    text-align: left !important;
+}
+
+#reasoning-box .reasoning-rag-header,
+.reasoning-box .reasoning-rag-header {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 5px !important;
+    padding-bottom: 4px !important;
+    margin-bottom: 4px !important;
+    border-bottom: 1px solid var(--color-surface-sidebar) !important;
+    color: var(--color-text-secondary) !important;
+    font-size: var(--font-size-xs) !important;
+    line-height: 1.4 !important;
+}
+
+#reasoning-box .reasoning-rag-sep,
+.reasoning-box .reasoning-rag-sep {
+    color: var(--color-border-strong) !important;
+    font-style: normal !important;
+}
+
+#reasoning-box .reasoning-rag-body,
+.reasoning-box .reasoning-rag-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+}
+
+#reasoning-box .reasoning-rag-row,
+.reasoning-box .reasoning-rag-row {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+    flex-wrap: wrap !important;
+    line-height: 1.45 !important;
+}
+
+#reasoning-box .reasoning-rag-label,
+.reasoning-box .reasoning-rag-label {
+    color: var(--color-text-secondary) !important;
+}
+
+#reasoning-box .reasoning-rag-val,
+.reasoning-box .reasoning-rag-val {
+    color: var(--color-text-muted) !important;
+}
+
+#reasoning-box .reasoning-rag-chunks,
+.reasoning-box .reasoning-rag-chunks {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    padding-left: 8px !important;
+    margin-top: 1px !important;
+    border-left: 1.5px solid var(--color-border) !important;
+}
+
+#reasoning-box .reasoning-rag-chunk,
+.reasoning-box .reasoning-rag-chunk {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 6px !important;
+    line-height: 1.4 !important;
+}
+
+#reasoning-box .reasoning-rag-score,
+.reasoning-box .reasoning-rag-score {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-style: normal !important;
+    color: var(--color-text-secondary) !important;
+    background: var(--color-surface-subtle) !important;
+    padding: 0 4px !important;
+    border-radius: 3px !important;
+    flex: 0 0 auto !important;
+}
+
+#reasoning-box .reasoning-rag-doc,
+.reasoning-box .reasoning-rag-doc {
+    color: var(--color-text-muted) !important;
+}
+
+.reasoning-closing-note {
+    margin-top: 6px !important;
+    padding-top: 4px !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    color: var(--color-text-subtle) !important;
+    font-size: var(--font-size-xs) !important;
+}
+
+.reasoning-line {
+    margin-bottom: 3px !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    color: var(--color-text-muted) !important;
+    line-height: 1.55 !important;
+}
+
+/* Fix the wrapper Gradio uses around .form to prevent overflow.
+   Only applied to the main layout wrapper, NOT the dropdown's internal .wrap */
+.gradio-container>.main>.wrap {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Architecture badge link in footer — flat pill, primary blue text */
+#app-footer .badge.arch-link {
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--color-primary-soft);
+    border: 1px solid var(--color-primary-border);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs) !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+#app-footer .badge.arch-link:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    color: var(--color-primary-hover);
+}
+
+#app-footer .badge.arch-link svg {
+    flex: 0 0 auto;
+}
+
+/* Keyboard focus — visible corporate blue ring across all interactive buttons */
+.sidebar-item:focus-visible,
+#new-chat-btn:focus-visible,
+#sample-questions .label-wrap:focus-visible,
+#sidebar-collapse:focus-visible,
+#sidebar-expand:focus-visible,
+.plus-btn:focus-visible,
+.plus-dropdown-item:focus-visible,
+#submit-btn:focus-visible,
+#stop-btn:focus-visible,
+.conv-delete:focus-visible,
+.cmd-chip-remove:focus-visible,
+#reasoning-box>summary:focus-visible {
+    outline: 2px solid var(--color-focus-ring) !important;
+    outline-offset: 2px !important;
+}
+
+textarea:focus-visible {
+    outline: none !important;
+}
+
+/* ---- Narrow Window / Mobile (Portrait & Landscape on phones like iPhone 11) ----
+   Sidebar stays horizontal (never hides sample questions or chat history) and
+   auto-collapses via JS on mobile/narrow viewports; if opened manually on a
+   narrow window, it overlays smoothly on the left with a subtle backdrop scrim. */
+@media (max-width: 920px),
+(max-height: 520px) {
+    #app-shell {
+        flex-direction: row !important;
+        height: 100% !important;
+        max-height: 100% !important;
+    }
+
+    #app-shell:not(.collapsed)::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.32);
+        z-index: var(--z-scrim);
+        pointer-events: auto;
+    }
+
+    #sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        width: 350px !important;
+        max-width: 85vw !important;
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        z-index: var(--z-sidebar) !important;
+        box-shadow: 4px 0 18px rgba(15, 23, 42, 0.16) !important;
+    }
+
+    #app-shell.collapsed #sidebar {
+        box-shadow: none !important;
+    }
+
+    #main,
+    #app-shell.collapsed #main {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        padding: 46px 12px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    #welcome-hero {
+        padding: 12px 4px 0 !important;
+    }
+
+    #custom-input-container {
+        margin-top: auto !important;
+        margin-bottom: calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+        flex: 0 0 auto !important;
+        z-index: var(--z-sticky) !important;
+    }
+
+    #chat-box .avatar-image,
+    #chat-box .avatar-container {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        min-width: 0 !important;
+    }
+
+    #sidebar-expand,
+    #sidebar-collapse {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .plus-dropdown-item {
+        min-height: 40px !important;
+    }
+}
+
+/* Short landscape phones (e.g. iPhone 11 landscape: 896x414) */
+@media (max-height: 480px) {
+    #welcome-hero {
+        padding: 8px 4px 0 !important;
+    }
+
+    #welcome-hero h1,
+    #chat-box #welcome-hero h1 {
+        font-size: 19px !important;
+        margin-bottom: 4px !important;
+    }
+
+    #welcome-hero p.hero-cta,
+    #chat-box #welcome-hero p.hero-cta {
+        margin-top: 8px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* Accessibility: respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* Yellow warning triangle badge for external data source banner under ### CONCLUSION */
+.warning-triangle-icon {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: text-bottom;
+    margin-right: 4px;
+    color: #f59e0b;
+}
+
+.warning-triangle-icon svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluation Dashboard · NAV Compliance &amp; Audit</title>
+  <link rel="stylesheet" href="/static/css/evaluation.css">
+</head>
+
+<body>
+  <main id="eval-page">
+    <!-- Top Header Card: Single Title + Scientific 40-Scenario Taxonomy Table -->
+    <header class="eval-header-card" aria-labelledby="eval-main-heading">
+      <div class="eval-header-top">
+        <div class="eval-header-left">
+          <a class="eval-back" href="/" title="Return to main NAV Compliance Chatbot">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Chat</span>
+          </a>
+          <div class="eval-title-block">
+            <h1 id="eval-main-heading">End-to-End Agent Reasoning &amp; Compliance Evaluation</h1>
+            <span id="benchmark-status-pill" class="eval-status-pill">
+              <span class="status-dot"></span>
+              <span id="benchmark-status-text">Ready</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="eval-actions">
+          <button id="toggle-terminal-btn" type="button" class="eval-btn eval-btn-secondary"
+            title="Toggle live benchmark terminal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            <span>Console</span>
+          </button>
+
+          <button id="cancel-run-btn" type="button" class="eval-btn eval-btn-danger" hidden
+            title="Cancel active benchmark subprocess">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+            </svg>
+            Stop
+          </button>
+
+          <button id="rerun-btn" type="button" class="eval-btn eval-btn-primary"
+            title="Run full 40-scenario evaluation benchmark">
+            <svg id="rerun-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <svg id="rerun-icon-spin" class="eval-spinner" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+              <circle cx="12" cy="12" r="9" stroke-opacity="0.25"></circle>
+              <path d="M21 12a9 9 0 0 0-9-9"></path>
+            </svg>
+            <span id="rerun-btn-label">Re-run Evaluation</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scientific Taxonomy Table of the 40 Benchmark Scenarios -->
+      <p class="taxonomy-intro">
+        This synthetic Luxembourg UCITS financial compliance and NAV audit benchmark comprises <strong>40
+          scenarios</strong> spanning diverse regulatory regimes and hypothetical audit situations for demonstration and
+        evaluation purposes.
+      </p>
+      <div class="eval-table-wrap taxonomy-table-wrap">
+        <table class="eval-table taxonomy-table" aria-label="40-Scenario Benchmark Taxonomy">
+          <thead>
+            <tr>
+              <th>Matrix Code</th>
+              <th>Dataset IDs</th>
+              <th>Cases</th>
+              <th>Evaluation Taxonomy Group</th>
+              <th>Statutory &amp; Quantitative Verification Scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>C1 – C8</code></td>
+              <td><code>CALC_01 – CALC_08</code></td>
+              <td><strong>8</strong></td>
+              <td><strong>Fee Accrual, Subscription Tax &amp; Day-Count Conventions</strong></td>
+              <td>Flat management fees (Class R <code>120 bps</code>, Class H-USD <code>65 bps</code>), <em>Taxe
+                  d'abonnement</em> (<code>1 bps</code> vs <code>5 bps</code>), ex-dividend accrual, and
+                <code>Actual/365</code> vs <code>Actual/360</code> liability overstatement (Lux Alpha Prospectus §8–§9).
+              </td>
+            </tr>
+            <tr>
+              <td><code>C9 – C12</code></td>
+              <td><code>CALC_09 – CALC_12</code></td>
+              <td><strong>4</strong></td>
+              <td><strong>Marginal Tiered Fee &amp; Breakpoint Schedules</strong></td>
+              <td>Progressive GAV fee tiers (Footnote <code>(*1)</code>: <code>40 bps</code> &le; EUR 50M,
+                <code>30 bps</code> &gt; EUR 50M), administrator tier-omission audits, and multi-class hurdle schedules.
+              </td>
+            </tr>
+            <tr>
+              <td><code>C13 – C16</code></td>
+              <td><code>CALC_13 – CALC_16</code></td>
+              <td><strong>4</strong></td>
+              <td><strong>UCITS Article 52 Concentration Limits (5/10/40 &amp; Covered Bonds)</strong></td>
+              <td>Single-issuer <code>10%</code> cap, <code>40%</code> aggregate basket (&gt; <code>5%</code> holdings),
+                and Article 52(3) qualifying covered bond caps (<code>25%</code> single issuer / <code>80%</code>
+                aggregate).</td>
+            </tr>
+            <tr>
+              <td><code>C17 – C30</code></td>
+              <td><code>CALC_17 – CALC_30</code></td>
+              <td><strong>14</strong></td>
+              <td><strong>NAV Error Materiality, Prudential Caps &amp; Indemnification</strong></td>
+              <td>Bitemporal tolerance regimes (<code>CSSF 02/77</code> vs <code>CSSF 24/856</code>), Table 9 REA
+                triggers (<code>EUR 50k / EUR 5k</code>), Accounting vs Economic breach methods, Articles 52(5)/55/83
+                caps, Swing Pricing, HWM fees, FX allocation, and statutory interest.</td>
+            </tr>
+            <tr>
+              <td><code>G1 – G10</code></td>
+              <td><code>RAG_01 – RAG_10</code></td>
+              <td><strong>10</strong></td>
+              <td><strong>Statutory RAG Grounding &amp; Closed-World Abstention</strong></td>
+              <td>Cross-document synthesis (<code>CSSF 02/77</code>, <code>CSSF 24/856</code> Tables 10–11,
+                <code>UCITS 2009/65/EC</code>, <code>Lux Alpha Prospectus</code>), Point 35(d)(iii) <code>500 bps</code>
+                cap, Point 42 exemption, and out-of-corpus abstention guard (<code>US SEC Rule 2a-5</code>).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </header>
+
+    <!-- Collapsible Real-time Streaming Terminal Console -->
+    <div id="terminal-drawer" class="eval-terminal-drawer bg-zinc-950 text-emerald-400 font-mono text-xs" hidden>
+      <div class="eval-terminal-bar">
+        <div class="eval-terminal-title">
+          <span class="term-dots" aria-hidden="true">
+            <span class="term-dot red"></span>
+            <span class="term-dot amber"></span>
+            <span class="term-dot green"></span>
+          </span>
+          <span>python -m evaluation.evaluate_agent_calculation --all</span>
+        </div>
+        <div class="eval-terminal-controls">
+          <span id="terminal-meta-status">Idle</span>
+          <button id="clear-terminal-btn" type="button" class="term-mini-btn">Clear</button>
+          <button id="collapse-terminal-btn" type="button" class="term-mini-btn">Hide</button>
+        </div>
+      </div>
+      <pre id="terminal-output" class="eval-terminal-output"
+        aria-live="polite">Ready. Click "Re-run Evaluation" to launch a live benchmark run.</pre>
+    </div>
+
+    <!-- Run History Selector (5 Recent Runs with Executive Summary Tooltip on Hover) -->
+    <section class="eval-card eval-history-section" aria-label="Recent benchmark runs">
+      <div class="eval-bar-header">
+        <span class="eval-bar-label">Recent Runs</span>
+      </div>
+      <div id="run-history-bar" class="run-history-bar" role="tablist">
+        <!-- Populated dynamically via /api/evaluation/history -->
+      </div>
+    </section>
+
+    <!-- 40-Scenario Interactive Matrix Grid (10 Columns × 4 Rows) -->
+    <section class="eval-card" aria-label="40-Scenario Matrix">
+      <div class="matrix-toolbar">
+        <span class="eval-bar-label">Scenarios (C1–C30 Calculation · G1–G10 RAG Grounding)</span>
+        <div class="matrix-filters" role="group" aria-label="Filter scenarios">
+          <button type="button" class="filter-pill active" data-filter="all">All (40)</button>
+          <button type="button" class="filter-pill" data-filter="passed">Pass</button>
+          <button type="button" class="filter-pill" data-filter="failed">Fail</button>
+          <button type="button" class="filter-pill" data-filter="calculation">Calculation</button>
+          <button type="button" class="filter-pill" data-filter="rag_grounding">RAG</button>
+        </div>
+      </div>
+
+      <div id="scenario-matrix-grid" class="scenario-matrix-grid" role="grid"
+        aria-label="40 Scenario Evaluation Matrix">
+        <!-- 40 Compact Badges C1..C30, G1..G10 injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Scenario Execution Trace Inspector -->
+    <section id="trace-inspector-section" class="eval-card trace-inspector" aria-live="polite">
+      <div id="trace-inspector-content">
+        <!-- Populated dynamically when a scenario card is selected -->
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/evaluation.js"></script>
+</body>
+
+</html>

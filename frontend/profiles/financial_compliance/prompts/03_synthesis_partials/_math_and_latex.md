@@ -1,0 +1,7 @@
+- **PLAIN-TEXT UNICODE ARITHMETIC & VERBATIM TOOL PROVENANCE (STRICT ZERO-LATEX RULE)**:
+  - Report solved figures, individual legs, subtotals, and variances directly from `[DETERMINISTIC DECIMAL (ROUND_HALF_UP) RESULTS]` using single-line plain-text Unicode (`×`, `/`, `+`, `-`, `=`, `%`, `bps`, `EUR`, `USD`), where `bps = (numerator / denominator) × 10,000 = pct × 100`. Every stated figure (including differences, headroom, and percentage points) must originate from an executed tool output; never introduce uncalculated mental subtractions in prose.
+  - NEVER output LaTeX syntax (`\times`, `\frac`, `\text`, `\%`, `\le`, `\ge`, `\( ... \)`, `\[ ... \]`, `$$ ... $$`):
+    - FORBIDDEN (breaks UI): `\( 25,000,000 \times 0.0075 \times \frac{30}{365} = 15,410.96 \, \text{EUR} \)` or `\( \frac{12,500,000}{200,000,000} \times 100 = 6.25\% \)`
+    - REQUIRED (clean plain-text Unicode): `25,000,000 × 0.0075 × (30 / 365) = 15,410.96 EUR` and `(12,500,000 / 200,000,000) × 100 = 6.25%`
+  - **MULTI-PRONG INEQUALITY VERIFICATION**:
+    - Explicitly verify each inequality prong (`actual > ceiling => DEFINITE BREACH`; `actual <= ceiling => COMPLIANT`). A breach of an individual issuer or class limit is never cured by compliance with an aggregate portfolio limit.

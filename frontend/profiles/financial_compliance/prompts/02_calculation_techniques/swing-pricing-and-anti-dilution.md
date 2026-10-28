@@ -1,0 +1,10 @@
+- **ACTIVE TECHNIQUE — Swing Pricing & Anti-Dilution Levy**:
+  - **Net Capital Flow & Swing Trigger**:
+    - Compute net capital flow (`subscriptions - redemptions`) as a percentage of unswung NAV: `(net_flow / unswung_total_nav) * 100`.
+    - When `abs(net_flow_pct) > swing_threshold_pct`, swing NAV upward on net inflows (`unswung_nav * (1 + swing_factor)`) and downward on net outflows (`unswung_nav * (1 - swing_factor)`).
+  - **Share Issuance & Dilution Adjustment**:
+    - Expand share issuance inline without rounding intermediate share counts:
+      - `Shares issued = capital_flow / swung_nav`
+      - `Dilution adjustment = capital_flow - ((capital_flow / swung_nav) * unswung_nav)`
+  - **Anti-Dilution Liquidity Levy**:
+    - Compute `Levy amount = subscription_amount * levy_rate` and `Net invested capital = subscription_amount - levy_amount`.

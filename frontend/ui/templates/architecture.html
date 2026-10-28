@@ -1,0 +1,88 @@
+<!-- Architecture page: renders the Second-Level NAV Compliance & Audit RAG Engine diagrams client-side with local mermaid.min.js -->
+<div id="arch-page">
+  <div class="arch-hero">
+    <h1>Bitemporal Neuro-Symbolic RAG — System Architecture</h1>
+    <p>Automated Second-Level NAV Compliance &amp; Audit Verification under <strong>Circular CSSF 02/77</strong>, <strong>Circular CSSF 24/856</strong>, <strong>UCITS Directive 2009/65/EC (Article 22)</strong>, and <strong>Lux Alpha SICAV Prospectus</strong>.</p>
+  </div>
+
+  <!-- SECTION 1: 4-PILLAR NEURO-SYMBOLIC ARCHITECTURE -->
+  <div class="arch-section">
+    <h2>1 · Four-Pillar Bitemporal Neuro-Symbolic RAG Architecture</h2>
+    <p class="arch-caption">Exact data and control flow across Pillar 1 (Structure-, Table- &amp; Footnote-Aware Ingestion), Pillar 2 (Dual-Tier Hybrid Qdrant + Atomic Parent Store with Hard Bitemporal Pre-Filtering), Pillar 3 (Two-Stage Hybrid RRF + Batched CrossEncoder Reranking with Adaptive Structural Weighting &Phi;<sub>domain</sub>), and Pillar 4 (4-Node LangGraph Neuro-Symbolic Python <code>Decimal</code> Verification).</p>
+    <pre class="mermaid">
+flowchart TD
+    subgraph P1["Pillar 1: Structure-, Table- & Footnote-Aware Ingestion (ingest_compliance_corpus.py)"]
+        D1["cssf02_77eng.pdf<br/>2002-11-27 .. 2024-12-31<br/>(Strip Repeal Stamp + Borderless Table Fix)"]
+        D2["CSSF24_856eng.pdf<br/>2025-01-01 .. 9999-12-31<br/>(Stitch Table 10 pp.42-43 & Table 6)"]
+        D3["UCITS_Directive_2009_65_EC.pdf<br/>2009-11-17 .. 9999-12-31<br/>(2-Col Split x0 &lt; W/2 + Strip \u00ad/\u00a0)"]
+        D4["lux_alpha_ucits_prospectus.md<br/>2023-01-01 .. 9999-12-31<br/>(Section 9.1 Fee Table + Footnote *1)"]
+        Parser["Asymmetric Parent-Child Splitter<br/>Atomic Table + Footnote (*, *1, *2) Merge<br/>Selective Atomic Table Child (&lt;= 2,400 chars)"]
+        Meta["Bitemporal & Provenance Tagger<br/>valid_from_int / valid_to_int (YYYYMMDD)<br/>outbound_citations + SHA-256 Digest"]
+        D1 & D2 & D3 & D4 --> Parser --> Meta
+    end
+
+    subgraph P2["Pillar 2: Dual-Tier Hybrid Index & Atomic Parent Store (Concurrent Snapshot Safe)"]
+        Qdrant[("Qdrant Hybrid Vector Index<br/>1,194 Child Chunks<br/>Dense: Qwen3-Embedding-0.6B (1024-d)<br/>Sparse: FastEmbed BM25<br/>Payload Index: valid_from_int, valid_to_int, doc_id")]
+        ParentStore[("Atomic JSON Parent Store<br/>128 Self-Contained Parent Chunks<br/>data/compliance_rag/parent_store/*.json<br/>Full Stitched Tables + Footnotes + SHA-256")]
+        Meta --> Qdrant
+        Meta --> ParentStore
+    end
+
+    subgraph P3["Pillar 3: Hard Bitemporal Pre-Filtering & Two-Stage Hybrid Reranking (retrieval_engine.py)"]
+        QIn["Control Query q + Point-in-Time Audit Date t_audit (YYYY-MM-DD)"]
+        Stage0["Stage 0: O(log N) Hard Bitemporal Pre-Filter<br/>valid_from_int &lt;= tau(t_audit) &lt;= valid_to_int<br/>+ Explicit Target doc_id Scope Detection"]
+        Decomp["Compound Sub-Query Decomposition<br/>D(q) = {q, q_1, q_2} for Multi-Clause / Multi-Page Rules"]
+        Stage1["Stage 1: Hybrid Dense + Sparse BM25<br/>Reciprocal Rank Fusion (RRF, k_cand = 12 per sub-query)"]
+        Stage2["Stage 2: Batched Cross-Attention Reranking<br/>BAAI/bge-reranker-base (batch_size=32, RLock)<br/>+ Adaptive Structural Weighting Phi_domain(q, c)"]
+        Hydrate["Sub-Query Top-1 Lock & Parent Hydration<br/>Deduplicate child -> parent_id & load full Parent JSON"]
+        QIn --> Stage0 --> Decomp --> Stage1 --> Stage2 --> Hydrate
+        Qdrant -.->|"Filtered Child Candidates"| Stage1
+        ParentStore -.->|"Hydrate Full Parent JSON"| Hydrate
+    end
+
+    subgraph P4["Pillar 4: 4-Node LangGraph Neuro-Symbolic Verification Engine (nav_audit_engine.py)"]
+        Pack(["FundAccountingPackInput<br/>(GAV, Net Assets, Shares, Reported NAV/Fees, Dates)"])
+        N1["Node 1: bitemporal_retrieve<br/>Fetch Point-in-Time Statutory & Prospectus Parents"]
+        N2["Node 2: semantic_rule_parser<br/>LLM (Z.AI glm-5.3-flash, T=0) + Clause Validator<br/>-> Pydantic StatutoryThresholdSpec & ProspectusFeeSpec"]
+        N3["Node 3: deterministic_decimal_verifier<br/>Pure Python decimal.Decimal (ROUND_HALF_UP)<br/>NAV/Share, bps Variance, Tiered 40/30 bps & Actual/365 Math"]
+        N4["Node 4: immutable_audit_trail_writer<br/>Canonical JSON Serialization + Record SHA-256 Seal<br/>logs/audit_trail_scenario_*.json"]
+        Pack --> N1
+        Hydrate ==>|"Top-k Valid Parent Chunks"| N1
+        N1 --> N2 --> N3 --> N4
+    end
+    </pre>
+  </div>
+
+  <!-- SECTION 2: INTERACTIVE LANGGRAPH AGENT LIFECYCLE -->
+  <div class="arch-section">
+    <h2>2 · Interactive Compliance Assistant LangGraph Lifecycle (<code>sample-rag-chatbot/rag_agent/graph.py</code>)</h2>
+    <p class="arch-caption">Real-time state machine powering the Gradio chat interface: isolated per-conversation threads (<code>chat-&lt;conv_id&gt;</code>), SQLite turn persistence (<code>db/chat_history.db</code>), dynamic query rewriting, parallel <code>Send</code> routing, context compression, and grounded streaming synthesis.</p>
+    <pre class="mermaid">
+flowchart TD
+    START(["User Message + Source Mode<br/>(Default: RAG only /search_documents)"]) --> GREET{"is_greeting<br/>Router"}
+    GREET -->|"Greeting / Thanks"| DIRECT["direct_answer<br/>Domain Small-Talk Reply"] --> END1(["Stream to UI & Persist"])
+    GREET -->|"Compliance Query"| SUM["summarize_history<br/>Condense if > 6 msgs or > 2,000 tokens"]
+    SUM --> REW["rewrite_query<br/>Parse /search_documents, /internet_search, /all_sources<br/>Assess Clarity & Complexity + Reset Turn State"]
+    REW --> ROUTE{"route_after_rewrite<br/>(LangGraph Send API)"}
+
+    ROUTE -->|"questionIsClear == False"| CLAR["request_clarification<br/>(Human-in-the-Loop Interrupt)"]
+    CLAR -.->|"User Clarifies"| REW
+
+    ROUTE -->|"RAG only or Complex Query"| ORCH["orchestrator (Z.AI glm-5.3-flash)<br/>Streams [REASONING] Step & Calls Tool"]
+    ROUTE -->|"All Sources + Simple"| SIMPLE["simple_rag_answer<br/>Single-Shot search_documents + QA"]
+    ROUTE -->|"Internet Search Mode"| WEB["direct_tool_answer<br/>DuckDuckGo internet_search + Grounded Prompt"]
+
+    ORCH --> R_ORCH{"route_after_orchestrator_call"}
+    R_ORCH -->|"Tool Call Issued"| TOOLS["ToolNode: agent_tools<br/>search_documents (Bitemporal Hybrid + Reranker)<br/>or internet_search"]
+    TOOLS --> CHK_COMP["should_compress_context<br/>Track retrieval_keys & Estimate Tokens"]
+    CHK_COMP -->|"Tokens > Threshold"| COMP["compress_context<br/>Summarize Prior Tool Outputs"] --> ORCH
+    CHK_COMP -->|"Tokens <= Threshold"| ORCH
+
+    R_ORCH -->|"No Tool Call (Final Answer)"| COLL["collect_answer"]
+    R_ORCH -->|"Max Iterations / Tool Calls"| FALL["fallback_response<br/>Synthesize from Gathered Evidence"] --> COLL
+
+    COLL & SIMPLE & WEB --> AGG["aggregate_answers<br/>Merge Sub-Query Answers & Stream [CONCLUSION]"]
+    AGG --> END2(["Clean Source Names & Save to SQLite chat_store"])
+    </pre>
+  </div>
+</div>

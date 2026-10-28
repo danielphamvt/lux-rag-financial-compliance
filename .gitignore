@@ -1,0 +1,152 @@
+# ==============================================================================
+# Git Ignore for Second-Level NAV Compliance & Audit RAG Engine
+# (rag-financial-compliance)
+# ==============================================================================
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables, credentials & secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.secret
+*.token
+
+# Data, vector storage & persistent cache (Generated artifacts)
+data/
+**/data/
+qdrant_db/
+**/qdrant_db/
+parent_store/
+**/parent_store/
+.fastembed_cache/
+**/.fastembed_cache/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+chat_history.db*
+**/chat_history.db*
+
+# Logs & Audit Run Trails
+logs/
+logs/live_chat/
+**/logs/
+*.log
+prompt_logs/
+**/prompt_logs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+coverage.xml
+nosetests.xml
+
+# Operating System specific files
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.gemini/
+.agent/
+.claude/
+
+# LaTeX build artifacts (paper compilation)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.lof
+paper/*.lot
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Local tooling artifacts
+release-manifest.json
+.repomixignore
+tmp/
+*.tmp
+
+# folders
+docs
+plans
+scripts
+paper
+
+# Ignore all dot-directories (hidden folders at any level, e.g. .ruff_cache, .archify, .ua)
+.*/
+!.github/
+
+# Evaluation results (per-backend benchmark outputs)
+evaluation/results/
+

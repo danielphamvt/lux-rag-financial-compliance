@@ -1,0 +1,9 @@
+- **ACTIVE TECHNIQUE — Portfolio Concentration, Borrowing & Global Exposure Caps**:
+  - **Individual Exposure Weights & Threshold Baskets**:
+    - Compute `(holding / net_assets) * 100` on a separate labeled line for every issuer, group member, or target fund in the portfolio.
+    - When evaluating a threshold basket (e.g., holdings exceeding `5%`, covered bonds, or non-UCITS target funds), sum only the positions that satisfy the statutory inclusion condition and explicitly note excluded positions in the analysis.
+  - **Ceiling Breach Quantification**:
+    - Compare each individual weight and aggregate basket against its statutory ceiling (`actual - cap`), computing the variance across both percentage (`actual_pct - cap_pct`, or `bps = (actual_pct - cap_pct) * 100`) and currency (`actual_eur - (net_assets * (cap_pct / 100))`) as explicit lines in `calculate_decimal`. Never state percentage point (pp) or currency excesses in prose without an executed formula.
+  - **Commitment Approach & Derivative Netting**:
+    - Net eligible hedging short positions against matching long notionals (`long_notional - eligible_short_notional`) before adding other derivative commitments.
+    - Compute `Global exposure % = (total_commitment / net_assets) * 100` and remaining headroom under the statutory ceiling in both `%` and currency.

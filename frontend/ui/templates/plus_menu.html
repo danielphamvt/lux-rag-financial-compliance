@@ -1,0 +1,26 @@
+<div id="plus-menu-container" class="plus-menu-container">
+  <button type="button" id="plus-btn" class="plus-btn" title="Source mode (Default: RAG only)" aria-label="Source mode" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </button>
+  <div id="plus-dropdown" class="plus-dropdown">
+    <div class="plus-dropdown-item active" data-mode="RAG only" title="Strict Audit Mode (100% grounded in the 4 ingested compliance documents)">
+      <span class="plus-item-check">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+      <span class="plus-item-title">RAG only</span>
+    </div>
+    <div class="plus-dropdown-item" data-mode="Assistant mode" title="Hybrid Assistant mode (Internal Corpus first, then Internet / AI knowledge)">
+      <span class="plus-item-check">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+      <span class="plus-item-title">Assistant mode</span>
+    </div>
+  </div>
+</div>

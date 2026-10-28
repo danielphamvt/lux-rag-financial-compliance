@@ -1,0 +1,43 @@
+/* Styles for the /architecture demo page */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+#arch-page { max-width: 1180px; margin: 0 auto; padding: 8px 24px 56px; }
+
+.arch-hero { padding: 18px 0 8px; }
+.arch-hero h1 { margin: 0 0 8px; font-size: 29px; color: #0f172a; }
+.arch-hero p { margin: 0; color: #475569; font-size: 15px; line-height: 1.6; max-width: 920px; }
+
+.arch-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-top: 22px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+.arch-section h2 { margin: 0 0 6px; font-size: 19.5px; color: #0f172a; }
+.arch-caption { margin: 0 0 14px; color: #64748b; font-size: 13.8px; line-height: 1.5; }
+
+/* Diagram containers: center + scroll on small screens */
+.arch-section pre.mermaid {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+@media (max-width: 720px) {
+  .arch-hero h1 { font-size: 24px; }
+  #arch-page { padding: 8px 14px 32px; }
+  .arch-section { padding: 16px; }
+}

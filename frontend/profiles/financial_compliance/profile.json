@@ -1,0 +1,130 @@
+{
+  "name": "financial_compliance",
+  "title": "Second-Level NAV Compliance & Audit",
+  "description": "Luxembourg UCITS & CSSF Second-Level Controls",
+  "response_language": "English",
+  "corpus_domain_label": "the Luxembourg CSSF compliance corpus",
+  "source_display_names": {
+    "cssf02_77eng.pdf": "Circular CSSF 02/77 (Effective 2002-11-27 to 2024-12-31)",
+    "CSSF24_856eng.pdf": "Circular CSSF 24/856 (Effective from 2025-01-01)",
+    "UCITS_Directive_2009_65_EC.pdf": "UCITS IV Directive 2009/65/EC (Depositary & NAV Rules)",
+    "lux_alpha_ucits_prospectus.md": "Lux Alpha SICAV — UCITS Prospectus (Section 8 & 9)"
+  },
+  "document_labels": {
+    "CSSF_24_856": "CSSF 24/856",
+    "CSSF_02_77": "CSSF 02/77",
+    "UCITS_2009_65_EC": "UCITS Directive 2009/65/EC",
+    "LUX_ALPHA_PROSPECTUS": "Lux Alpha SICAV Prospectus"
+  },
+  "source_keywords": [
+    "02_77",
+    "24_856",
+    "2009_65",
+    "lux_alpha",
+    "prospectus"
+  ],
+  "supported_share_classes": [
+    "Class I",
+    "Class R",
+    "Class H-USD"
+  ],
+  "supported_audit_types": [
+    "nav_pricing_error",
+    "fee_accrual_audit"
+  ],
+  "bitemporal_regimes": {
+    "cutoff_date": "2025-01-01",
+    "default_audit_date": "2025-02-15",
+    "default_fund_type": "Equity UCITS",
+    "default_accrual_days": 365,
+    "predecessor": {
+      "label": "Circular CSSF 02/77",
+      "short_label": "CSSF 02/77",
+      "default_audit_date": "2024-06-15",
+      "years": ["2002", "2023", "2024"],
+      "tokens": ["02/77", "02_77", "cssf 02/77"]
+    },
+    "successor": {
+      "label": "Circular CSSF 24/856",
+      "short_label": "CSSF 24/856",
+      "default_audit_date": "2025-02-15",
+      "years": ["2025", "2026"],
+      "tokens": ["24/856", "24_856", "cssf 24/856"]
+    },
+    "transitional": {
+      "default_audit_date": "2025-01-10",
+      "keywords": ["transitional", "chapter 10"],
+      "exclude_when_tokens": ["directive", "2009/65"]
+    },
+    "instrument_split_pattern": "\\s+(?=(?:under\\s+|in\\s+|per\\s+)?(?:ucits\\s+(?:iv\\s+)?directive|(?:circular\\s+)?cssf\\s+(?:circular\\s+)?\\d{2}/\\d{2,4}|lux\\s+alpha\\b))"
+  },
+  "out_of_corpus_detection": {
+    "circular_regex": "\\b(?:circular\\s+)?cssf\\s+(?:circular\\s+)?(\\d{2}/\\d{2,4})\\b",
+    "circular_label_prefix": "Circular CSSF",
+    "indexed_circulars": ["02/77", "24/856"],
+    "directive_regex": "\\bDirective\\s+((?:19|20)\\d{2}/\\d+/(?:EC|EU|EEC))\\b",
+    "regulation_regex": "\\bRegulation\\s+\\((?:EU|EC)\\)\\s+(?:No\\s+)?(\\d{2,4}/\\d+)\\b",
+    "indexed_directives": ["2009/65/ec"],
+    "external_instruments": [
+      {"pattern": "\\b(?:aifmd|2011/61/eu)\\b", "label": "AIFMD (Directive 2011/61/EU)", "tokens": ["aifmd", "2011/61"]},
+      {"pattern": "\\b(?:mifid(?:\\s+ii)?|2014/65/eu)\\b", "label": "MiFID II (Directive 2014/65/EU)", "tokens": ["mifid", "2014/65"]},
+      {"pattern": "\\b(?:sfdr|2019/2088)\\b", "label": "SFDR (Regulation 2019/2088)", "tokens": ["sfdr", "2019/2088"]},
+      {"pattern": "\\b(?:priips|1286/2014)\\b", "label": "PRIIPs Regulation", "tokens": ["priips", "1286/2014"]},
+      {"pattern": "\\b(?:emir|648/2012)\\b", "label": "EMIR", "tokens": ["emir", "648/2012"]},
+      {"pattern": "\\bbasel\\s+(?:iii|iv|3|4)\\b", "label": "Basel III/IV", "tokens": ["basel iii", "basel iv", "basel 3", "basel 4"]},
+      {"pattern": "\\b(?:solvency\\s+ii|2009/138/ec)\\b", "label": "Solvency II", "tokens": ["solvency ii", "2009/138"]},
+      {"pattern": "\\b(?:(?:sec\\s+)?rule\\s+2a-7|investment\\s+company\\s+act(?:\\s+of\\s+1940)?)\\b", "label": "US SEC / Investment Company Act", "tokens": ["2a-7", "investment company act"]},
+      {"pattern": "\\b(?:dora|2022/2554)\\b", "label": "DORA (Regulation 2022/2554)", "tokens": ["dora", "2022/2554"]},
+      {"pattern": "\\b(?:mica|2023/1114)\\b", "label": "MiCA (Regulation 2023/1114)", "tokens": ["mica", "2023/1114"]},
+      {"pattern": "\\bfatca\\b", "label": "FATCA", "tokens": ["fatca"]}
+    ]
+  },
+  "routing": {
+    "domain_signals": [
+      "nav", "ucits", "uci", "cssf", "sicav", "sicar", "sif", "raif", "eltif", "mmf", "aif", "aifm", "aifmd",
+      "mifid", "sfdr", "priips", "emir", "dora", "mica", "fatca", "crs", "basel", "solvency", "sec", "finma",
+      "fca", "esma", "iosco", "luxembourg", "lux\\s+alpha", "prospectus", "circular", "directive", "regulation",
+      "law", "statute", "article", "art\\.", "section", "chapter", "table", "point", "paragraph", "annex",
+      "footnote", "fund", "sub-fund", "compartment", "share", "unit", "class", "gav", "aum", "net\\s+asset",
+      "bps", "basis\\s+point", "fee", "commission", "rebate", "retrocession", "tax", "taxe", "abonnement",
+      "breach", "tolerance", "threshold", "de\\s+minimis", "indemnif", "compensat", "remediat", "corrective",
+      "depositary", "custod", "safekeeping", "delegate", "sub-custod", "audit", "auditor", "rea", "reviseur",
+      "r[eé]viseur", "accounting", "lifo", "fifo", "weighted\\s+average", "economic\\s+method",
+      "caisse\\s+de\\s+consignation", "issuer", "portfolio", "asset", "security", "securities", "bond",
+      "equity", "money\\s+market", "derivative", "otc", "collateral", "var", "leverage", "borrowing",
+      "concentration", "5/10/40", "valuation", "pricing", "swing", "dilution", "redemption", "subscription",
+      "accrual", "amortiz", "day-count", "actual/365", "actual/360", "tier", "breakpoint", "investor",
+      "unitholder", "shareholder", "retail", "institutional", "well-informed", "professional", "board",
+      "management\\s+company", "manco", "administrator", "transfer\\s+agent", "promoter", "regulator",
+      "supervisory", "sanction", "fine", "report", "notification", "filing", "kyc", "aml", "sanctions",
+      "compliance", "regulatory", "financial", "finance", "bank", "insurance", "pension", "investment",
+      "capital", "dividend", "yield", "interest", "rate", "currency", "fx", "hedg", "eur", "usd", "gbp", "chf", "jpy"
+    ],
+    "domain_metric_pattern": "(?:%|\\b\\d+(?:\\.\\d+)?\\s*(?:%|bps|eur|usd|gbp|chf|jpy|million|m\\b|k\\b)|02/77|24/856|2009/65)"
+  },
+  "harness_config": {
+    "max_ast_exponent": 1000,
+    "max_precision_digits": 24,
+    "currencies": ["EUR", "USD", "GBP", "CHF", "JPY", "CAD", "AUD", "SEK", "NOK", "DKK", "SGD", "HKD", "CNY"],
+    "units": ["bps", "shares", "share", "units", "unit", "days", "day", "months", "month", "years", "year", "per\\s+annum", "p\\.?a\\.?"]
+  },
+  "sample_questions": [
+    "As of 15 June 2024, what is the NAV error tolerance threshold for money market UCIs/cash funds, and what are the EUR indemnification thresholds below which no full corrective action plan is required?",
+    "Under the circular in force from 1 January 2025, what is the tolerance threshold for Money Market Funds (MMFs) in Table 1 and the EUR compensation thresholds for a separate/special report in Table 9?",
+    "Which circular applies to NAV errors detected between 29 March 2024 and 1 January 2025 according to the transitional provisions in Chapter 10?",
+    "Under CSSF 24/856 point 35(d)(iii), what is the absolute maximum cap that a customized tolerance threshold for well-informed/professional investor UCIs (SIFs/SICARs/UCI Part II) must never exceed?",
+    "Under UCITS Directive Article 22, what are the depositary's oversight obligations regarding the calculation of the value of units, and does delegating safe-keeping to a third party affect the depositary's liability?",
+    "Under Section 5.5.3 (Points 78 to 85) of Circular CSSF 24/856, what are the three accounting cost methods (LIFO, FIFO, weighted average cost) under the Accounting method, and how does the Economic method differ?",
+    "In Section 8.4 Paragraphs 150 and 151 of Circular CSSF 24/856, what do stitched Table 10 (investment breaches with Footnote (*)) and Table 11 (other errors under Chapter 6) require for REA intervention?",
+    "Under Sections 7.3 and 7.4 (Points 132 to 135) of Circular CSSF 24/856, where must unclaimed compensation for former investors be transferred under the Law of 29 April 1999, and who bears the fees resulting from corrective actions?",
+    "In Lux Alpha SICAV, the average Gross Asset Value (GAV) during a 91-day quarter is distributed as follows: Class I (Institutional, ISIN LU2024000101): EUR 60,000,000, and Class R (Retail, ISIN LU2024000202): EUR 30,000,000. Using Section 9.1 (including Footnote (*1)) and Section 9.2 (Actual/365 convention): (1) Calculate the exact quarterly management fee accrued for Class I and Class R. (2) Calculate the exact quarterly taxe d'abonnement accrued for Class I (0.01% p.a.) and Class R (0.05% p.a.). (3) State whether Footnote (*1) applies to Class R and the total combined quarterly expense for both classes.",
+    "A Luxembourg UCITS has total Net Assets of 240,000,000 EUR on 2025-02-20 and holds transferable securities in three corporate issuers: Issuer Alpha (21,600,000 EUR), Issuer Beta (19,200,000 EUR), and Issuer Gamma (14,400,000 EUR). The portfolio manager executes an active purchase of an additional 7,200,000 EUR in Issuer Alpha. Calculate the exact percentage exposure for each issuer and the aggregate exposure of >5% holdings against the 5/10/40 concentration limits in Article 52(1) and 52(2) of UCITS Directive 2009/65/EC, and determine if an active breach has occurred under Circular CSSF 24/856."
+  ],
+  "internet_search": {
+    "query_suffixes": []
+  },
+  "strings": {
+    "out_of_scope_notice": "### CONCLUSION\n\n⚠️ **Out of Scope:** This system is dedicated exclusively to Luxembourg Second-Level NAV Compliance & Fund Audit (Circular CSSF 02/77, Circular CSSF 24/856, UCITS Directive 2009/65/EC, and Lux Alpha SICAV Prospectus). Your question falls outside the financial compliance and fund audit domain.",
+    "closed_abstention_notice": "⚠️ **Not found (Out of Scope):** The queried framework is out of scope and not governed by {corpus_domain_label}, as no matching provisions were found in the provided document database."
+  }
+}

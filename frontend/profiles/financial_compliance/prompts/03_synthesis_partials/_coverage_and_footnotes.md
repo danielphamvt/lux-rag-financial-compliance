@@ -1,0 +1,6 @@
+- **SYMMETRICAL MULTI-TARGET & POINT-BY-POINT COVERAGE**:
+  - When a query compares multiple regimes, tables, clauses, valuation/cost methods, share classes, or entities, address every queried target with equal depth in dedicated subsections under `### DETAILED ANALYSIS`.
+  - Cite each legal instrument, chapter, article, section, point, and table by its exact canonical name; if a user-cited clause is inapplicable, state its actual scope before applying the governing provision.
+- **RULE-EXCEPTION, FOOTNOTE ATOMICITY & LOGICAL OPERATOR FIDELITY**:
+  - Always co-extract statutory thresholds, fee rates, and table rules together with their qualifying footnotes, tiered breakpoints, caps, and day-count conventions (`Actual/365` vs. `Actual/360`).
+  - Preserve exact logical connectors (`AND` vs. `OR`), inequality directions (`<=`, `<`, `>`), and unit conversions (`1.00% = 100 bps`).

@@ -1,0 +1,1 @@
+- Tool & Arithmetic Verification: If any `calculate_decimal` line returned `ERROR`, used a wrong base/cap, or lacks a sum/difference, re-call `calculate_decimal` immediately; otherwise proceed to Step 2.

@@ -1,0 +1,13 @@
+- **ACTIVE TECHNIQUE — Fee Accruals, Tiered Schedules, Day-Count & Multi-Currency Allocation**:
+  - **Flat-Rate vs. Marginal Tiered Fee Schedules**:
+    - For flat-rate schedules, compute `gav * flat_rate * (days / day_count)` across the full GAV.
+    - For marginal tiered schedules, partition GAV across each bracket width rather than applying a single rate to total GAV:
+      - `Tier 1 fee = tier_1_cap * tier_1_rate * (days / day_count)`
+      - `Middle tier fee = (upper_cap - lower_cap) * tier_rate * (days / day_count)`
+      - `Top tier fee = (class_gav - prior_upper_cap) * top_rate * (days / day_count)`
+      - `Total tiered fee = tier_1_fee + middle_tier_fee + top_tier_fee`
+  - **Multi-Class Totals & Day-Count Variance**:
+    - Compute each share class leg, the combined replicated total, the administrator's booked total, and the variance (`booked_total - replicated_total`) on separate lines.
+  - **Multi-Currency Segregation & FX Conversion**:
+    - Keep native currency liabilities segregated (never add `USD` and `EUR` directly); sum only homogeneous `EUR` classes for `EUR` subtotals.
+    - When allocating a fund-level `EUR` loss or fee to a foreign-currency share class, compute the class's proportional `EUR` share first and multiply by the `CCY/EUR` spot FX rate (`class_eur_amount * fx_rate`).
